@@ -1,0 +1,42 @@
+form {
+  .inputs-wrapper {
+    margin: 32px 0;
+  }
+
+  .form-group:not(:last-child) {
+    margin-bottom: 24px;
+  }
+
+  label {
+    color: white;
+    sup {
+      color: var(--yellow-900);
+    }
+  }
+
+  .input {
+    background: var(--violet-800) !important;
+    border-radius: 8px;
+    padding: 4px 8px;
+    color: white;
+    border-color: transparent;
+    height: 40px;
+    &.invalid {
+      border-color: var(--danger);
+    }
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgb(104 18 191);
+    }
+    &::placeholder {
+      color: var(--blue-500);
+    }
+  }
+
+  .error-message {
+    color: var(--danger);
+    margin-top: 4px;
+    &::first-letter {
+      text-transform: capitalize;
+    }
+  }
+}

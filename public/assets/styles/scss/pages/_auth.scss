@@ -1,0 +1,34 @@
+main.auth {
+  .container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+
+  h1 {
+    font-size: 32px;
+    margin-bottom: 4px;
+  }
+
+  form {
+    width: min(100%, 400px);
+    border: 1px solid var(--purple-900);
+    box-shadow: $subtleShadow;
+    padding: 44px 32px;
+    border-radius: 12px;
+    h1 + p {
+      color: var(--violet-200);
+      font-size: 14px;
+      a {
+        color: white;
+        text-decoration: underline;
+        &:hover {
+          color: var(--yellow-900);
+        }
+      }
+    }
+  }
+}

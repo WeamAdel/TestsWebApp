@@ -1,3 +1,11 @@
 //Helpers
 @import "./helpers/variables.scss";
 @import "./helpers/global.scss";
+@import "./helpers/framework";
+
+//Components
+@import "./components/forms";
+@import "./components/buttons";
+
+//Pages
+@import "./pages/auth";

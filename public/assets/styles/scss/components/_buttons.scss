@@ -1,0 +1,32 @@
+%button {
+  min-width: 160px;
+  min-height: 44px;
+  border-radius: 10px;
+  font-size: 14px;
+  transition: all 0.25s ease-in-out;
+}
+
+.btn.btn-primary {
+  @extend %button;
+  background-color: var(--purple-900);
+  color: white;
+  border: none;
+  font-weight: 500;
+  &:hover {
+    color: var(--blue-900);
+    background-color: var(--yellow-900);
+    a {
+      background-color: var(--yellow-900);
+      color: var(--blue-900);
+    }
+  }
+  &:active,
+  &:focus {
+    background-color: var(--yellow-900) !important ;
+    transform: scale(0.98);
+    color: var(--blue-900) !important;
+    a {
+      color: var(--blue-900) !important;
+    }
+  }
+}

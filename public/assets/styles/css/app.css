@@ -11,7 +11,8 @@
   --violet-900A: #5e188c;
   --violet-500A: #6c17a6;
   --purple-900: #6812bf;
-  --purple-900: #fff01a;
+  --yellow-900: #fff01a;
+  --danger: #e91e63;
   /* Fonts */
   --roboto: "Roboto", sans-serif;
   --robotoCondensed: "Roboto Condensed", sans-serif;
@@ -21,6 +22,112 @@ body {
   font-family: var(--roboto);
   color: white;
   background-color: var(--blue-900) !important;
+}
+
+h1,
+h2,
+h3 {
+  color: white;
+  font-family: var(--robotoCondensed);
+}
+
+form .inputs-wrapper {
+  margin: 32px 0;
+}
+form .form-group:not(:last-child) {
+  margin-bottom: 24px;
+}
+form label {
+  color: white;
+}
+form label sup {
+  color: var(--yellow-900);
+}
+form .input {
+  background: var(--violet-800) !important;
+  border-radius: 8px;
+  padding: 4px 8px;
+  color: white;
+  border-color: transparent;
+  height: 40px;
+}
+form .input.invalid {
+  border-color: var(--danger);
+}
+form .input:focus {
+  box-shadow: 0 0 0 0.2rem #6812bf;
+}
+form .input::placeholder {
+  color: var(--blue-500);
+}
+form .error-message {
+  color: var(--danger);
+  margin-top: 4px;
+}
+form .error-message::first-letter {
+  text-transform: capitalize;
+}
+
+.btn.btn-primary {
+  min-width: 160px;
+  min-height: 44px;
+  border-radius: 10px;
+  font-size: 14px;
+  transition: all 0.25s ease-in-out;
+}
+
+.btn.btn-primary {
+  background-color: var(--purple-900);
+  color: white;
+  border: none;
+  font-weight: 500;
+}
+.btn.btn-primary:hover {
+  color: var(--blue-900);
+  background-color: var(--yellow-900);
+}
+.btn.btn-primary:hover a {
+  background-color: var(--yellow-900);
+  color: var(--blue-900);
+}
+.btn.btn-primary:active, .btn.btn-primary:focus {
+  background-color: var(--yellow-900) !important;
+  transform: scale(0.98);
+  color: var(--blue-900) !important;
+}
+.btn.btn-primary:active a, .btn.btn-primary:focus a {
+  color: var(--blue-900) !important;
+}
+
+main.auth .container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+main.auth h1 {
+  font-size: 32px;
+  margin-bottom: 4px;
+}
+main.auth form {
+  width: min(100%, 400px);
+  border: 1px solid var(--purple-900);
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+  padding: 44px 32px;
+  border-radius: 12px;
+}
+main.auth form h1 + p {
+  color: var(--violet-200);
+  font-size: 14px;
+}
+main.auth form h1 + p a {
+  color: white;
+  text-decoration: underline;
+}
+main.auth form h1 + p a:hover {
+  color: var(--yellow-900);
 }
 
 /*# sourceMappingURL=app.css.map */

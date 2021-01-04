@@ -4,4 +4,9 @@ body {
   background-color: var(--blue-900) !important;
 }
 
-/*# sourceMappingURL=global.css.map */
+h1,
+h2,
+h3 {
+  color: white;
+  font-family: var(--robotoCondensed);
+}
