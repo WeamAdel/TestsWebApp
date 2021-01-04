@@ -6,6 +6,10 @@ export const onAuthSuccess = function (state, payload) {
   return {
     ...state,
     app: data,
+    user: {
+      ...state.user,
+      isLogged: true,
+    },
   };
 };
 
@@ -25,6 +29,30 @@ export const updateSignUpLoadingStatus = function (state, status) {
     signUp: {
       ...state.signUp,
       isLoading: status,
+    },
+  };
+};
+
+export const updateSignInLoadingStatus = function (state, status) {
+  return {
+    ...state,
+    signIn: {
+      ...state.signIn,
+      isLoading: status,
+    },
+  };
+};
+
+export const setAppData = function (state, { uid, apiToken }) {
+  return {
+    ...state,
+    app: {
+      uid,
+      apiToken,
+    },
+    user: {
+      ...state.user,
+      isLogged: uid ? true : false,
     },
   };
 };

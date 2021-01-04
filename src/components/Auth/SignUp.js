@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 import Inputs from "../Shared/Forms/Inputs/Inputs";
 import Button from "../Shared/Button";
 
-function SignUp({ doSignUp, app, signUp, history }) {
+function SignUp({ doSignUp, app, signUp, history, isLogged }) {
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(signUpSchema),
     mode: "onChange",
@@ -21,11 +21,12 @@ function SignUp({ doSignUp, app, signUp, history }) {
     doSignUp({ password: data.password, email: data.email });
   };
 
+  //Redirect user if signed in
   useEffect(() => {
-    if (app.apiToken) history.push("/");
-  }, [app.apiToken]);
+    if (isLogged == true) history.push("/dashboard");
+  }, [isLogged]);
 
-  return (
+  return isLogged == false ? (
     <main className="auth sign-up">
       <div className="container">
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -46,12 +47,13 @@ function SignUp({ doSignUp, app, signUp, history }) {
         </form>
       </div>
     </main>
-  );
+  ) : null;
 }
 
 const mapStateToProps = (state) => {
   return {
     app: state.auth.app,
+    isLogged: state.auth.user.isLogged,
     signUp: state.auth.signUp,
   };
 };

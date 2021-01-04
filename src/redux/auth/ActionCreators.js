@@ -22,6 +22,16 @@ const updateSignInLoadingStatus = (status) => {
   };
 };
 
+export const setAppData = ({ uid, apiToken }) => {
+  return {
+    type: ActionTypes.SET_APP_DATA,
+    payload: {
+      uid,
+      apiToken,
+    },
+  };
+};
+
 /* API Actions */
 const projectWebAPIKey = "AIzaSyDmoM405gtzCzG5nTHLJ5ffWg2tBNRp6Ug";
 
@@ -50,3 +60,33 @@ export const doAPISignUp = ({ email, password }) => (dispatch) => {
       console.log(error);
     });
 };
+
+export const doAPISignIn = ({ email, password }) => (dispatch) => {
+  const apiEndPoint =
+    "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" +
+    projectWebAPIKey;
+
+  dispatch(updateSignInLoadingStatus(true));
+  axios
+    .post(apiEndPoint, { email, password, returnSecureToken: true })
+    .then((res) => {
+      dispatch(updateSignInLoadingStatus(false));
+      if (res.status == 200) {
+        const data = res.data;
+        dispatch(
+          onAuthSuccess({
+            apiToken: data.idToken,
+            uid: data.localId,
+          })
+        );
+      }
+    })
+    .catch((error) => {
+      dispatch(updateSignInLoadingStatus(false));
+      console.log(error);
+    });
+};
+
+// export const getUserData = function(){
+
+// }

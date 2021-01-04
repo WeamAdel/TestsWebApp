@@ -1,0 +1,36 @@
+.navbar {
+  background-color: var(--blue-900);
+  box-shadow: 0 2px 0.5rem rgb(104 18 191 / 34%);
+  border-bottom: 1px solid var(--purple-900);
+  padding: 0 !important;
+
+  .container {
+    height: 100%;
+  }
+
+  ul {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+
+    a {
+      color: white;
+      display: block;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      transition: all 0.25s ease-in-out;
+
+      &.active {
+        color: white;
+        background-color: var(--purple-900);
+      }
+
+      &:hover {
+        text-decoration: none;
+        background-color: var(--blue-500);
+      }
+    }
+  }
+}

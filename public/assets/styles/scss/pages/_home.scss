@@ -1,0 +1,13 @@
+.home {
+  .carousel-item {
+    min-height: calc(100vh - 60px); //60px is the navbar height
+    .heading {
+      font-size: 28px;
+      margin-bottom: 8px;
+      color: var(--violet-200);
+    }
+    img {
+      max-height: 60vh;
+    }
+  }
+}
