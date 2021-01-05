@@ -2,30 +2,46 @@ import PropTypes from "prop-types";
 import Input from "../Input";
 import AnswerInput from "./AnswerInput";
 
-export default function Question({ index, register, errors }) {
-  const answersJSX = [];
-  console.log(answersJSX);
-  for (let i = 1; i <= 4; i++) {
-    answersJSX.push(
+export default function Question({
+  index,
+  id,
+  name,
+  answers,
+  rightAnswer,
+  register,
+  errors,
+  removeQuestion,
+}) {
+  const answersJSX = answers.map((answer, index) => {
+    return (
       <AnswerInput
-        key={i}
-        index={i}
+        key={answer.id}
+        rightAnswer={rightAnswer}
         questionIndex={index}
+        questionId={id}
+        index={index}
         register={register}
+        {...answer}
       />
     );
-  }
+  });
 
   return (
     <div className="question">
+      {index != 0 ? (
+        <button className="remove-question-btn" onClick={removeQuestion}>
+          <i className="fa fa-times-circle" />
+        </button>
+      ) : null}
       <Input
-        id={"q" + index}
-        label={"Question " + index}
+        id={id}
+        name={name}
+        label={"Question " + (index + 1)}
         register={register}
         isRequired={true}
         placeholder="Enter your question"
         type="text"
-        errorMessage={errors["q" + index]}
+        // errorMessage={errors["q" + index]}
       />
       <fieldset>
         <legend>Answers</legend>
@@ -37,4 +53,10 @@ export default function Question({ index, register, errors }) {
 
 Question.propTypes = {
   index: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
+  answers: PropTypes.array.isRequired,
+  rightAnswer: PropTypes.object.isRequired,
+  register: PropTypes.any.isRequired,
+  removeQuestion: PropTypes.func.isRequired,
+  errors: PropTypes.object,
 };

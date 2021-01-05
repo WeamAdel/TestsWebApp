@@ -3,6 +3,7 @@ import ErrorMessage from "../ErrorMessage";
 
 export default function Input({
   id,
+  name,
   type,
   label,
   placeholder,
@@ -18,11 +19,11 @@ export default function Input({
       </label>
       <input
         id={id}
-        name={id}
+        name={name ?? id}
         type={type}
         placeholder={placeholder}
         className={"input form-control " + (errorMessage ? "invalid" : "")}
-        ref={register}
+        ref={register()}
       />
       {errorMessage ? <ErrorMessage message={errorMessage} /> : null}
     </div>

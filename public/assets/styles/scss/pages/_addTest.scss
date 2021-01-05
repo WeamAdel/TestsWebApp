@@ -5,6 +5,27 @@
     margin-bottom: 44px;
   }
 
+  .question {
+    position: relative;
+    .remove-question-btn {
+      background-color: transparent;
+      color: var(--danger);
+      border: none;
+      padding: 0;
+      font-size: 20px;
+      position: absolute;
+      right: 0;
+      top: -10px;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+    &:not(:last-child) {
+      margin-bottom: 44px;
+    }
+  }
+
   .q-counter {
     width: 180px;
     height: 180px;
@@ -45,9 +66,13 @@
         position: relative;
         z-index: 2;
         cursor: pointer;
-      }
-      input:checked + .custom-radio i {
-        color: greenyellow;
+        &:checked + .custom-radio i {
+          color: greenyellow;
+        }
+        &:focus + .custom-radio {
+          border-radius: 50%;
+          border: 1px solid var(--purple-900);
+        }
       }
     }
     .custom-radio {
@@ -81,11 +106,11 @@
     text-align: center;
     border: none;
     background-color: transparent;
-    &:hover img {
-      filter: drop-shadow(2px 4px 3px rgba(255, 255, 255, 0.25));
-    }
     img {
       filter: drop-shadow(0px 0px 3px rgba(255, 255, 255, 0.1));
+    }
+    &:hover img {
+      filter: drop-shadow(2px 4px 3px rgba(255, 255, 255, 0.25));
     }
   }
 }
