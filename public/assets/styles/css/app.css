@@ -31,6 +31,19 @@ h3 {
   font-family: var(--robotoCondensed);
 }
 
+@media (max-width: 767px) {
+  h1 {
+    font-size: 24px !important;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  h3 {
+    font-size: 16px;
+  }
+}
 form .inputs-wrapper {
   margin: 32px 0;
 }
@@ -208,6 +221,13 @@ form .error-message::first-letter {
   text-decoration: none;
   background-color: var(--blue-500);
 }
+@media (max-width: 767px) {
+  .navbar ul a {
+    font-size: 14px;
+    padding: 6px 10px;
+    height: 40px;
+  }
+}
 
 main.auth .container {
   min-height: 100vh;
@@ -254,6 +274,83 @@ main.auth form h1 + p a:hover {
 }
 .home .carousel-item img {
   max-height: 60vh;
+}
+
+.add-test h1 {
+  margin-bottom: 44px;
+}
+.add-test .q-counter {
+  width: 180px;
+  height: 180px;
+  border: 1px solid #6812bf52;
+  border-radius: 42px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0.7rem #2c1a52;
+  color: white;
+  font-size: 20px;
+}
+.add-test legend {
+  font-size: 20px;
+  color: var(--violet-200);
+}
+.add-test .answer .inputs {
+  display: flex;
+  align-items: center;
+}
+.add-test .answer .radio-wrapper {
+  margin-left: 8px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.add-test .answer .radio-wrapper input {
+  opacity: 0.01;
+  width: 25px;
+  height: 25px;
+  display: block;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+}
+.add-test .answer .radio-wrapper input:checked + .custom-radio i {
+  color: greenyellow;
+}
+.add-test .answer .custom-radio {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+.add-test .answer .custom-radio i {
+  display: block;
+  color: var(--violet-800);
+}
+.add-test .answer .custom-radio i:hover {
+  color: var(--violet-200);
+}
+.add-test .add-question-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  border: none;
+  background-color: transparent;
+}
+.add-test .add-question-btn img {
+  filter: drop-shadow(2px 4px 3px rgba(255, 255, 255, 0.2));
 }
 
 /*# sourceMappingURL=app.css.map */

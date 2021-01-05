@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="60.993" height="58.665" viewBox="0 0 60.993 58.665">
+  <g id="Sort_Button" data-name="Sort Button" transform="translate(-470 -334)">
+    <path id="Path_898" data-name="Path 898" d="M28.913,0A28.913,28.913,0,0,1,57.827,28.915c0,2.122,2.381,16.341,1.862,18.708-2.749,12.622-23.14,1.81-36.985,1.81C6.735,49.434,0,44.882,0,28.913A28.913,28.913,0,0,1,28.913,0Z" transform="translate(470 338.921)" fill="#905ef7" opacity="0.45"/>
+    <path id="Path_897" data-name="Path 897" d="M28.913,0A28.913,28.913,0,0,1,57.827,28.915c0,2.122,2.381,16.341,1.862,18.708-2.749,12.622-23.14,1.81-36.985,1.81C6.735,49.434,0,44.882,0,28.913A28.913,28.913,0,0,1,28.913,0Z" transform="translate(471.23 334)" fill="#905ef7"/>
+    <g id="Icon_feather-plus-circle" data-name="Icon feather-plus-circle" transform="translate(512.969 348.529) rotate(90)">
+      <path id="Path_5" data-name="Path 5" d="M22,12A10,10,0,1,1,12,2,10,10,0,0,1,22,12Z" fill="none" stroke="#301c59" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <path id="Path_6" data-name="Path 6" d="M12,8v8" fill="none" stroke="#301c59" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <path id="Path_7" data-name="Path 7" d="M8,12h8" fill="none" stroke="#301c59" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    </g>
+  </g>
+</svg>

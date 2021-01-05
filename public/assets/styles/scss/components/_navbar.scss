@@ -32,5 +32,13 @@
         background-color: var(--blue-500);
       }
     }
+
+    @media (max-width: 767px) {
+      a {
+        font-size: 14px;
+        padding: 6px 10px;
+        height: 40px;
+      }
+    }
   }
 }

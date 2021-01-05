@@ -7,7 +7,6 @@ export default function Input({
   label,
   placeholder,
   errorMessage,
-  value,
   isRequired,
   register,
 }) {
