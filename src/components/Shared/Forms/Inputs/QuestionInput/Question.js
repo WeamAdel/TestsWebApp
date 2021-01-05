@@ -30,7 +30,7 @@ export default function Question({
     <div className="question">
       {index != 0 ? (
         <button className="remove-question-btn" onClick={removeQuestion}>
-          <i className="fa fa-times-circle" />
+          <i className="fa fa-trash" />
         </button>
       ) : null}
       <Input

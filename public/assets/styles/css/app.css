@@ -82,6 +82,7 @@ form .error-message::first-letter {
 }
 
 .btn.btn-primary {
+  position: relative;
   min-width: 160px;
   min-height: 44px;
   border-radius: 10px;
@@ -97,26 +98,33 @@ form .error-message::first-letter {
 }
 .btn.btn-primary:hover {
   color: var(--blue-900);
-  background-color: var(--yellow-900);
+  background-color: var(--violet-200);
 }
 .btn.btn-primary:hover a {
-  background-color: var(--yellow-900);
+  background-color: var(--violet-200);
   color: var(--blue-900);
 }
 .btn.btn-primary:active, .btn.btn-primary:focus {
-  background-color: var(--yellow-900) !important;
+  background-color: var(--violet-200) !important;
+  box-shadow: 0 0 0 0.2rem var(--purple-900) !important;
   transform: scale(0.98);
   color: var(--blue-900) !important;
 }
 .btn.btn-primary:active a, .btn.btn-primary:focus a {
   color: var(--blue-900) !important;
 }
+.btn.btn-primary:disabled {
+  background-color: var(--blue-800);
+}
 
 .lds-ripple {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
   display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
+  width: 40px;
+  height: 40px;
 }
 
 .lds-ripple div {
@@ -133,8 +141,8 @@ form .error-message::first-letter {
 
 @keyframes lds-ripple {
   0% {
-    top: 36px;
-    left: 36px;
+    top: 20px;
+    left: 20px;
     width: 0;
     height: 0;
     opacity: 1;
@@ -142,8 +150,8 @@ form .error-message::first-letter {
   100% {
     top: 0px;
     left: 0px;
-    width: 72px;
-    height: 72px;
+    width: 40px;
+    height: 40px;
     opacity: 0;
   }
 }

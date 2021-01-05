@@ -1,4 +1,5 @@
 %button {
+  position: relative;
   min-width: 160px;
   min-height: 44px;
   border-radius: 10px;
@@ -14,19 +15,23 @@
   font-weight: 500;
   &:hover {
     color: var(--blue-900);
-    background-color: var(--yellow-900);
+    background-color: var(--violet-200);
     a {
-      background-color: var(--yellow-900);
+      background-color: var(--violet-200);
       color: var(--blue-900);
     }
   }
   &:active,
   &:focus {
-    background-color: var(--yellow-900) !important ;
+    background-color: var(--violet-200) !important ;
+    box-shadow: 0 0 0 0.2rem var(--purple-900) !important;
     transform: scale(0.98);
     color: var(--blue-900) !important;
     a {
       color: var(--blue-900) !important;
     }
+  }
+  &:disabled {
+    background-color: var(--blue-800);
   }
 }

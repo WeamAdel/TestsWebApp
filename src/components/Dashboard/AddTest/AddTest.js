@@ -1,12 +1,28 @@
+import { useState, useEffect } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
-import axios from "../../../configs/axios";
+import { connect } from "react-redux";
+import firebase from "../../../configs/firebase";
 import Page from "../../Layout/Page";
 import QuestionCounter from "./QuestionsCounter";
 import AddQuestionBtn from "./AddQuestionBtn";
 import Question from "../../Shared/Forms/Inputs/QuestionInput/Question";
 import Button from "../../Shared/Button";
+import Input from "../../Shared/Forms/Inputs/Input";
+import { func } from "prop-types";
 
-export default function AddTest() {
+function AddTest({ history, isLogged, app }) {
+  const [test, setTest] = useState({
+    id: null,
+    isLoading: false,
+    success: null,
+    failed: null,
+  });
+  useEffect(() => {
+    if (isLogged == false) {
+      history.push("/sign-in");
+    }
+  }, [isLogged]);
+
   const { register, handleSubmit, errors, control } = useForm({
     // resolver: yupResolver(signInSchema),
     defaultValues: {
@@ -15,7 +31,7 @@ export default function AddTest() {
         {
           qid: "q1",
           question: "",
-          rightAnswerId: "",
+          rightAnswerIndex: "",
           answers: [],
         },
       ],
@@ -29,20 +45,77 @@ export default function AddTest() {
     name: "questions",
   });
 
+  function onTestScucess(testId) {
+    setTest({
+      ...test,
+      id: testId ?? test.id,
+      isLoading: false,
+    });
+  }
+
+  function onTestFail(error) {
+    console.log("Error saving your test:", error);
+  }
+
   function doAPISubmitTest(testData) {
-    axios
-      .post("/tests.json", testData)
-      .then((res) => {
-        if (res.status == 200) {
-          console.log("Success");
-        } else {
-          console.log("Failed");
-        }
-        console.log(res);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    setTest({
+      ...test,
+      isLoading: true,
+    });
+
+    //If the test already exists update it
+    //If it doesn't the create a new one and retrieve its id i.e(response.key)
+    if (!test.id) {
+      firebase
+        .database()
+        .ref(`tests/${app.uid}/`)
+        .push(testData)
+        .then((response) => {
+          onTestScucess(response.key);
+        })
+        .catch((error) => {
+          onTestFail(error);
+        });
+    } else {
+      firebase
+        .database()
+        .ref(`tests/${app.uid}/${test.id}`)
+        .update(testData)
+        .then(() => {
+          onTestScucess();
+        })
+        .catch((error) => {
+          onTestFail(error);
+        });
+    }
+
+    // axios
+    //   .post(endPoint, data)
+    //   .then((res) => {
+    //     if (res.status == 200) {
+    //       setTest({
+    //         ...test,
+    //         id: res.data.name,
+    //         isLoading: false,
+    //         success: true,
+    //       });
+    //     } else {
+    //       setTest({
+    //         ...test,
+    //         isLoading: false,
+    //         failed: true,
+    //       });
+    //     }
+    //     console.log(res);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //     setTest({
+    //       ...test,
+    //       isLoading: false,
+    //       failed: true,
+    //     });
+    //   });
   }
 
   const questionJSX = fields.map((item, index) => {
@@ -63,8 +136,8 @@ export default function AddTest() {
         answers={answers}
         removeQuestion={removeQuestion.bind(this, index)}
         rightAnswer={{
-          name: `questions[${index}].rightAnswerId`,
-          id: item.rightAnswerId,
+          name: `questions[${index}].rightAnswerIndex`,
+          index: item.rightAnswerIndex,
         }}
         register={register}
         errors={errors}
@@ -82,7 +155,7 @@ export default function AddTest() {
       qid: quesId,
       question: "",
       answers: [],
-      rightAnswerId: "",
+      rightAnswerIndex: "",
     };
     append(question);
   }
@@ -97,12 +170,22 @@ export default function AddTest() {
       <div className="row">
         <div className="col-md-8">
           <form onSubmit={handleSubmit(onSubmit)}>
+            <Input
+              register={register}
+              label="Test Name"
+              isRequired={true}
+              errorMessage={errors.name ? errors.name.message : null}
+              placeholder="Enter your test name"
+              id="name"
+              type="text"
+            />
+            <hr className="my-5" />
             {questionJSX}
             <hr />
             <Button
               title="Add Test"
               classes="btn-primary d-block mx-auto"
-              // isLoading={signIn.isLoading}
+              isLoading={test.isLoading}
             />
           </form>
         </div>
@@ -112,3 +195,12 @@ export default function AddTest() {
     </Page>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    app: state.auth.app,
+    isLogged: state.auth.user.isLogged,
+  };
+};
+
+export default connect(mapStateToProps)(AddTest);

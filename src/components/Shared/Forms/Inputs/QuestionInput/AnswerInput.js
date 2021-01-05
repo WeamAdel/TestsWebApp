@@ -32,9 +32,9 @@ export default function AnswerInput({
             id={"rightAnswer" + index + questionId}
             name={rightAnswer.name}
             type="radio"
-            value={id}
+            value={index}
             ref={register()}
-            defaultChecked={rightAnswer.id == id}
+            defaultChecked={rightAnswer.index == index}
           />
           <div className="custom-radio">
             <i className="fa fa-check-circle" />
@@ -50,7 +50,7 @@ AnswerInput.propTypes = {
   id: PropTypes.string.isRequired,
   value: PropTypes.string,
   rightAnswer: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    index: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   }).isRequired,
   questionIndex: PropTypes.number.isRequired,
