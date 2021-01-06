@@ -19,9 +19,8 @@ function AppWrapper({ children, setAppData, history, isLogged }) {
 
   //Redirect logged users to dashboard
   useEffect(() => {
-    if (isLogged == true) {
-      history.push("/dashboard");
-    }
+    const notInDahsboard = history.location.pathname.indexOf("dashboard") < 0;
+    if (isLogged == true && notInDahsboard) history.push("/dashboard");
   }, [isLogged]);
   return appDataStatus && isLogged != null ? children : <PageSpinner />;
 }

@@ -17,8 +17,8 @@ function Dashboard({ history, isLogged }) {
     <div className="dashboard">
       <Navbar />
       <Switch>
-        <Route path={"/dashboard/test"} component={Test} />
         <Route path={"/dashboard/test/:id"} component={Test} />
+        <Route path={"/dashboard/test"} component={Test} />
         <Route path={"/"} component={Tests} />
       </Switch>
     </div>

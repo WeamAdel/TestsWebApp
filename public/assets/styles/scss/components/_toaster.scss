@@ -1,0 +1,27 @@
+.toaster {
+  color: white;
+  margin: 0;
+  padding: 16px;
+  background-color: var(--blue-800);
+  border-radius: 12px;
+  max-width: 300px;
+  font-size: 14px;
+  position: fixed;
+  right: 32px;
+  transform: translateX(200%);
+  opacity: 0.8;
+  transition: all 0.25s ease-in-out;
+  z-index: 2;
+
+  &.show {
+    transform: none;
+    opacity: 1;
+  }
+
+  &.success {
+    border: 2px solid greenyellow;
+    i {
+      color: greenyellow;
+    }
+  }
+}

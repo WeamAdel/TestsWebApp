@@ -1,3 +1,5 @@
+import { connect } from "react-redux";
+
 export const onAuthSuccess = function (state, payload) {
   console.log(payload);
   const data = { uid: payload.uid, apiToken: payload.apiToken };
@@ -43,16 +45,32 @@ export const updateSignInLoadingStatus = function (state, status) {
   };
 };
 
-export const setAppData = function (state, { uid, apiToken }) {
+export const setAppData = function (state, appData) {
   return {
     ...state,
     app: {
-      uid,
-      apiToken,
+      uid: appData ? appData.uid : null,
+      apiToken: appData ? appData.apiToken : null,
     },
     user: {
       ...state.user,
-      isLogged: uid ? true : false,
+      isLogged: appData?.uid ? true : false,
+    },
+  };
+};
+
+export const doLogout = function (state) {
+  localStorage.removeItem("app");
+  return {
+    ...state,
+    app: {
+      uid: null,
+      apiToken: null,
+    },
+    user: {
+      username: null,
+      email: null,
+      isLogged: false,
     },
   };
 };

@@ -11,16 +11,19 @@ export default function Question({
   register,
   errors,
   removeQuestion,
+  question,
 }) {
   const answersJSX = answers.map((answer, index) => {
+    const answerId = id + "a" + (index + 1);
     return (
       <AnswerInput
-        key={answer.id}
+        key={answerId}
         rightAnswer={rightAnswer}
         questionIndex={index}
         questionId={id}
         index={index}
         register={register}
+        id={answerId}
         {...answer}
       />
     );
@@ -41,7 +44,7 @@ export default function Question({
         isRequired={true}
         placeholder="Enter your question"
         type="text"
-        // errorMessage={errors["q" + index]}
+        defaultValue={question}
       />
       <fieldset>
         <legend>Answers</legend>
@@ -53,7 +56,7 @@ export default function Question({
 
 Question.propTypes = {
   index: PropTypes.number.isRequired,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   answers: PropTypes.array.isRequired,
   rightAnswer: PropTypes.object.isRequired,
   register: PropTypes.any.isRequired,

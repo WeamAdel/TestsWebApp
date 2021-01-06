@@ -31,6 +31,8 @@ export default function reducer(state = initState, action) {
       return Utility.updateSignInLoadingStatus(state, action.payload);
     case ActionTypes.SET_APP_DATA:
       return Utility.setAppData(state, action.payload);
+    case ActionTypes.DO_LOGOUT:
+      return Utility.doLogout(state);
     default:
       return state;
   }

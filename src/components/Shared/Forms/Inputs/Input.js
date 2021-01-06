@@ -10,6 +10,7 @@ export default function Input({
   errorMessage,
   isRequired,
   register,
+  defaultValue,
 }) {
   return (
     <div className="form-group">
@@ -24,6 +25,7 @@ export default function Input({
         placeholder={placeholder}
         className={"input form-control " + (errorMessage ? "invalid" : "")}
         ref={register()}
+        defaultValue={defaultValue}
       />
       {errorMessage ? <ErrorMessage message={errorMessage} /> : null}
     </div>
@@ -38,4 +40,5 @@ Input.propTypes = {
   isRequired: PropTypes.bool.isRequired,
   register: PropTypes.any.isRequired,
   errorMessage: PropTypes.string,
+  defaultValue: PropTypes.any,
 };

@@ -34,7 +34,7 @@ function Tests({ app, isLogged }) {
           error: null,
         });
       })
-      .then((error) => {
+      .catch((error) => {
         console.log(error);
       });
   }

@@ -207,6 +207,20 @@ form .error-message::first-letter {
 .navbar .container {
   height: 100%;
 }
+.navbar .dropdown-toggle {
+  margin-left: 12px;
+}
+.navbar .dropdown-menu {
+  background-color: var(--blue-900);
+  border: 1px solid var(--purple-900);
+  right: 0;
+  left: unset;
+  padding: 0;
+}
+.navbar .dropdown-menu .dropdown-item:hover {
+  background-color: transparent;
+  color: var(--purple-900);
+}
 .navbar ul {
   display: flex;
   width: 100%;
@@ -218,15 +232,19 @@ form .error-message::first-letter {
   height: 60px;
   display: flex;
   align-items: center;
-  padding: 10px 20px;
   transition: all 0.25s ease-in-out;
+}
+.navbar ul a:hover {
+  text-decoration: none !important;
 }
 .navbar ul a.active {
   color: white;
   background-color: var(--purple-900);
 }
-.navbar ul a:hover {
-  text-decoration: none;
+.navbar ul a.nav-link {
+  padding: 10px 20px;
+}
+.navbar ul a.nav-link:hover {
   background-color: var(--blue-500);
 }
 @media (max-width: 767px) {
@@ -235,6 +253,32 @@ form .error-message::first-letter {
     padding: 6px 10px;
     height: 40px;
   }
+}
+
+.toaster {
+  color: white;
+  margin: 0;
+  padding: 16px;
+  background-color: var(--blue-800);
+  border-radius: 12px;
+  max-width: 300px;
+  font-size: 14px;
+  position: fixed;
+  right: 32px;
+  transform: translateX(200%);
+  opacity: 0.8;
+  transition: all 0.25s ease-in-out;
+  z-index: 2;
+}
+.toaster.show {
+  transform: none;
+  opacity: 1;
+}
+.toaster.success {
+  border: 2px solid greenyellow;
+}
+.toaster.success i {
+  color: greenyellow;
 }
 
 main.auth .container {

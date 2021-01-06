@@ -22,13 +22,16 @@ const updateSignInLoadingStatus = (status) => {
   };
 };
 
-export const setAppData = ({ uid, apiToken }) => {
+export const setAppData = (appData) => {
   return {
     type: ActionTypes.SET_APP_DATA,
-    payload: {
-      uid,
-      apiToken,
-    },
+    payload: appData,
+  };
+};
+
+export const doLogout = () => {
+  return {
+    type: ActionTypes.DO_LOGOUT,
   };
 };
 

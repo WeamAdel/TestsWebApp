@@ -7,10 +7,10 @@ export default function AnswerInput({
   id,
   index,
   name,
-  value,
   rightAnswer,
   register,
   errorMessage,
+  defaultValue,
 }) {
   return (
     <div className="form-group answer">
@@ -26,6 +26,7 @@ export default function AnswerInput({
           placeholder={`Answer ${index + 1}...`}
           className={"input form-control " + (errorMessage ? "invalid" : "")}
           ref={register()}
+          defaultValue={defaultValue}
         />
         <div className="radio-wrapper">
           <input
@@ -48,7 +49,7 @@ export default function AnswerInput({
 
 AnswerInput.propTypes = {
   id: PropTypes.string.isRequired,
-  value: PropTypes.string,
+  defaultValue: PropTypes.any,
   rightAnswer: PropTypes.shape({
     index: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
