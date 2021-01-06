@@ -6,8 +6,8 @@ export default function TestCard({ id, name, questionsCount }) {
     <li>
       <Link to={"/dashboard/test/" + id}>
         <h2>{name}</h2>
-        <ul>
-          <li className="d-flex flex-column-reverse">
+        <ul className="list-unstyled p-0">
+          <li className="info-card d-flex flex-column-reverse">
             <p className="mb-0">Questions</p>
             <div>
               <i className="fa fa-question-circle" />
