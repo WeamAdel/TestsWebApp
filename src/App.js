@@ -11,16 +11,16 @@ function App() {
   return (
     <Provider store={store}>
       <div className="App">
-        <AppWrapper>
-          <BrowserRouter>
+        <BrowserRouter>
+          <AppWrapper>
             <Switch>
               <Route path={"/"} exact component={Home} />
               <Route path={"/dashboard"} component={Dashboard} />
               <Route path={"/sign-in"} exact component={SignIn} />
               <Route path={"/sign-up"} exact component={SignUp} />
             </Switch>
-          </BrowserRouter>
-        </AppWrapper>
+          </AppWrapper>
+        </BrowserRouter>
       </div>
     </Provider>
   );

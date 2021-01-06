@@ -6,14 +6,10 @@ export default function Navbar(params) {
       <div className="container">
         <ul className="p-0 m-0 list-unstyled">
           <li>
-            <Link to="/sign-in" exact>
-              Sign In
-            </Link>
+            <Link to="/sign-in">Sign In</Link>
           </li>
           <li>
-            <Link to="/sign-up" exact>
-              Sign Up
-            </Link>
+            <Link to="/sign-up">Sign Up</Link>
           </li>
         </ul>
       </div>

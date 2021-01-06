@@ -8,20 +8,14 @@ import AddQuestionBtn from "./AddQuestionBtn";
 import Question from "../../Shared/Forms/Inputs/QuestionInput/Question";
 import Button from "../../Shared/Button";
 import Input from "../../Shared/Forms/Inputs/Input";
-import { func } from "prop-types";
 
-function AddTest({ history, isLogged, app }) {
+function AddTest({ history, app }) {
   const [test, setTest] = useState({
     id: null,
     isLoading: false,
     success: null,
     failed: null,
   });
-  useEffect(() => {
-    if (isLogged == false) {
-      history.push("/sign-in");
-    }
-  }, [isLogged]);
 
   const { register, handleSubmit, errors, control } = useForm({
     // resolver: yupResolver(signInSchema),
@@ -46,6 +40,7 @@ function AddTest({ history, isLogged, app }) {
   });
 
   function onTestScucess(testId) {
+    if (testId) history.push("/dashboard");
     setTest({
       ...test,
       id: testId ?? test.id,
@@ -88,34 +83,6 @@ function AddTest({ history, isLogged, app }) {
           onTestFail(error);
         });
     }
-
-    // axios
-    //   .post(endPoint, data)
-    //   .then((res) => {
-    //     if (res.status == 200) {
-    //       setTest({
-    //         ...test,
-    //         id: res.data.name,
-    //         isLoading: false,
-    //         success: true,
-    //       });
-    //     } else {
-    //       setTest({
-    //         ...test,
-    //         isLoading: false,
-    //         failed: true,
-    //       });
-    //     }
-    //     console.log(res);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //     setTest({
-    //       ...test,
-    //       isLoading: false,
-    //       failed: true,
-    //     });
-    //   });
   }
 
   const questionJSX = fields.map((item, index) => {
@@ -199,7 +166,6 @@ function AddTest({ history, isLogged, app }) {
 const mapStateToProps = (state) => {
   return {
     app: state.auth.app,
-    isLogged: state.auth.user.isLogged,
   };
 };
 

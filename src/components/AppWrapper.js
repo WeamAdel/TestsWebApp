@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { setAppData } from "../redux/auth/ActionCreators";
 import PageSpinner from "./Shared/Spinners/PageSpinner";
 
-function AppWrapper({ children, setAppData }) {
+function AppWrapper({ children, setAppData, history, isLogged }) {
   const [appDataStatus, setAppDataStatus] = useState(false);
 
+  //Read app data from localStorage
   useEffect(() => {
     getAppDate()
       .then((data) => {
@@ -14,7 +16,14 @@ function AppWrapper({ children, setAppData }) {
       })
       .catch((error) => console.log(error));
   }, []);
-  return appDataStatus ? children : <PageSpinner />;
+
+  //Redirect logged users to dashboard
+  useEffect(() => {
+    if (isLogged == true) {
+      history.push("/dashboard");
+    }
+  }, [isLogged]);
+  return appDataStatus && isLogged != null ? children : <PageSpinner />;
 }
 
 //Read app data form localStorage
@@ -26,6 +35,7 @@ async function getAppDate(params) {
 const mapStateToProps = (state) => {
   return {
     app: state.auth.app,
+    isLogged: state.auth.user.isLogged,
   };
 };
 
@@ -37,4 +47,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppWrapper);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(AppWrapper));
