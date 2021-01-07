@@ -187,6 +187,7 @@ function AddTest({ history, match, app }) {
       <h1>Add Test</h1>
       <Toaster
         type="success"
+        isFixed={true}
         message="Your test was saved successfully"
         show={test.success}
       />

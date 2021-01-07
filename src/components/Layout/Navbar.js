@@ -11,7 +11,7 @@ function Navbar({ doLogout }) {
             <Link to="/dashboard">Quiz.</Link>
           </li>
           <li>
-            <NavLink className="nav-link" to="/dashboard/test" exact>
+            <NavLink className="nav-link" to="/dashboard/test">
               <span>Add Test</span>
               <i className="fa fa-plus-square ml-2" />
             </NavLink>

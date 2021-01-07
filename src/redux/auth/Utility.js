@@ -22,14 +22,12 @@ export const onAuthSuccess = function (state, payload) {
   };
 };
 
-export const onAuthFail = function (state, errors) {
-  console.log(errors);
-
+export const onAuthFail = function (state, { message, page }) {
   return {
     ...state,
-    signIn: {
-      ...state.signIn,
-      errors: errors,
+    [page]: {
+      ...state[page],
+      errors: message,
     },
   };
 };

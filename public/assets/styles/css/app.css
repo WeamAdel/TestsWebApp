@@ -15,9 +15,9 @@
   --danger-900: #e91e63;
   --danger-800: rgba(220, 56, 72, 0.23);
   --danger-700: rgba(220, 56, 72, 0.16);
-  --success-900: #35dc6d;
-  --success-800: rgba(#35dc6d, 0.23);
-  --success-700: rgba(#35dc6d, 0.16);
+  --success-900: rgb(53, 220, 109);
+  --success-800: rgba(53, 220, 109, 0.23);
+  --success-700: rgba(53, 220, 109, 0.16);
   /* Fonts */
   --roboto: "Roboto", sans-serif;
   --robotoCondensed: "Roboto Condensed", sans-serif;
@@ -267,45 +267,47 @@ form .error-message::first-letter {
   border-radius: 12px;
   max-width: 300px;
   font-size: 14px;
-  position: fixed !important;
-  top: 12px;
-  left: 50%;
-  z-index: 2;
-  transform: translateX(-50%);
   transition: all 0.25s ease-in-out;
   display: flex;
   align-items: center;
-  white-space: nowrap;
-}
-.toaster .close:hover {
-  color: white;
+  margin: 16px auto;
 }
 .toaster .icon {
   width: 32px;
   height: 32px;
   font-size: 14px;
   border-radius: 50%;
-  color: rgba(255, 255, 255, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 12px;
+  flex-shrink: 0;
 }
-.toaster.show {
-  transform: none;
-  opacity: 1;
+.toaster.fixed {
+  position: fixed !important;
+  top: 0;
+  left: 50%;
+  z-index: 2;
+  transform: translateX(-50%) translateY(-100%);
+  margin: 0;
+}
+.toaster.fixed.show {
+  top: 12px;
+  transform: translateX(-50%);
 }
 .toaster.success {
-  background-color: var(--success-800) !important;
+  background-color: var(--purple-900) !important;
 }
-.toaster.success icon {
-  background-color: var(--success-700);
+.toaster.success .icon {
+  background-color: yellowgreen;
+  color: white;
 }
 .toaster.danger {
   background-color: var(--danger-800) !important;
 }
-.toaster.danger icon {
+.toaster.danger .icon {
   background-color: var(--danger-700);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 main.auth .container {
@@ -315,6 +317,7 @@ main.auth .container {
   justify-content: center;
   padding-top: 32px;
   padding-bottom: 32px;
+  flex-direction: column;
 }
 main.auth .toaster {
   min-width: min(100%, 400px);

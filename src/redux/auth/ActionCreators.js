@@ -8,10 +8,10 @@ const onAuthSuccess = ({ apiToken, uid }) => {
   };
 };
 
-const onAuthFail = (errors) => {
+const onAuthFail = ({ message, page }) => {
   return {
     type: ActionTypes.ON_AUTH_FAIL,
-    payload: errors,
+    payload: { message, page },
   };
 };
 
@@ -66,8 +66,19 @@ export const doAPISignUp = ({ email, password }) => (dispatch) => {
       }
     })
     .catch((error) => {
-      dispatch(updateSignUpLoadingStatus(false));
       console.log(error);
+      dispatch(updateSignUpLoadingStatus(false));
+
+      let message = "Something went wrong";
+      if ((error.status = 400)) {
+        if ((error.message = "EMAIL_EXISTS"))
+          message =
+            "This email already exists! sign in or enter a different email";
+        else if (error.message == "TOO_MANY_ATTEMPTS_TRY_LATER")
+          message = "Too many attempts, please try again later";
+      }
+
+      dispatch(onAuthFail({ message, page: "signUp" }));
     });
 };
 
@@ -94,17 +105,13 @@ export const doAPISignIn = ({ email, password }) => (dispatch) => {
     })
     .catch((error) => {
       dispatch(updateSignInLoadingStatus(false));
-      console.log(error);
+
       if ((error.status = 400)) {
         const message =
           error.message == "EMAIL_NOT_FOUND"
             ? "This email does not exist"
             : "Invalid password";
-        dispatch(onAuthFail(message));
+        dispatch(onAuthFail({ message, page: "signIn" }));
       }
     });
 };
-
-// export const getUserData = function(){
-
-// }

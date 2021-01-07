@@ -1,23 +1,17 @@
 import PropTypes from "prop-types";
 
-export default function Toaster({ type, message, show }) {
+export default function Toaster({ type, message, show, isFixed }) {
   return (
     <div
-      className={`toaster alert ${type} alert-dismissible ${show}`}
+      className={`toaster alert ${type} ${show ? "show" : ""} ${
+        isFixed ? "fixed" : ""
+      }`}
       role="alert"
     >
       <div className="icon">
-        <i className={`fa fa-${type == "success" ? "double-check" : "bug"}`} />{" "}
+        <i className={`fa fa-${type == "success" ? "check" : "bug"}`} />{" "}
       </div>
       <span>{message}</span>
-      <button
-        type="button"
-        className="close"
-        data-dismiss="alert"
-        aria-label="Close"
-      >
-        <span aria-hidden="true">&times;</span>
-      </button>
     </div>
   );
 }
@@ -26,4 +20,5 @@ Toaster.propTypes = {
   type: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
   show: PropTypes.any,
+  isFixed: PropTypes.bool,
 };

@@ -5,48 +5,49 @@
   border-radius: 12px;
   max-width: 300px;
   font-size: 14px;
-  position: fixed !important;
-  top: 12px;
-  left: 50%;
-  z-index: 2;
-  transform: translateX(-50%);
   transition: all 0.25s ease-in-out;
   display: flex;
   align-items: center;
-  white-space: nowrap;
-
-  .close:hover {
-    color: white;
-  }
+  margin: 16px auto;
 
   .icon {
     width: 32px;
     height: 32px;
     font-size: 14px;
     border-radius: 50%;
-    color: rgba(white, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
     margin-right: 12px;
+    flex-shrink: 0;
   }
 
-  &.show {
-    transform: none;
-    opacity: 1;
+  &.fixed {
+    position: fixed !important;
+    top: 0;
+    left: 50%;
+    z-index: 2;
+    transform: translateX(-50%) translateY(-100%);
+    margin: 0;
+    &.show {
+      top: 12px;
+      transform: translateX(-50%);
+    }
   }
 
   &.success {
-    background-color: var(--success-800) !important;
-    icon {
-      background-color: var(--success-700);
+    background-color: var(--purple-900) !important;
+    .icon {
+      background-color: yellowgreen;
+      color: white;
     }
   }
 
   &.danger {
     background-color: var(--danger-800) !important;
-    icon {
+    .icon {
       background-color: var(--danger-700);
+      color: rgba(white, 0.6);
     }
   }
 }

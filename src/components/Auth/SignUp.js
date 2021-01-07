@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 
 import Inputs from "../Shared/Forms/Inputs/Inputs";
 import Button from "../Shared/Button";
+import Toaster from "../Shared/Toaster";
 
 function SignUp({ doSignUp, app, signUp, history, isLogged }) {
   const { register, handleSubmit, errors } = useForm({
@@ -29,6 +30,9 @@ function SignUp({ doSignUp, app, signUp, history, isLogged }) {
   return isLogged == false ? (
     <main className="auth sign-up">
       <div className="container">
+        {signUp?.errors ? (
+          <Toaster show={true} type="danger" message={signUp.errors} />
+        ) : null}
         <form onSubmit={handleSubmit(onSubmit)}>
           <h1>Sign Up</h1>
           <p>
