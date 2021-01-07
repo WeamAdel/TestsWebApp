@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { connect } from "react-redux";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { testSchema } from "../../../forms/validation/schemas/test";
 import firebase from "../../../configs/firebase";
 import Page from "../../Layout/Page";
 import QuestionCounter from "./QuestionsCounter";
@@ -18,8 +20,6 @@ function AddTest({ history, match, app }) {
     failed: null,
   });
   const [isEditing, setIsEditing] = useState(null);
-  const [testData, setTestData] = useState(null);
-  const [defaultValues, setDefaultValues] = useState(null);
 
   /* 
     This page works as both edit and add test pages, so here
@@ -41,7 +41,7 @@ function AddTest({ history, match, app }) {
   }, []);
 
   const { register, handleSubmit, errors, control, reset } = useForm({
-    // resolver: yupResolver(signInSchema),
+    resolver: yupResolver(testSchema),
     defaultValues: {
       questions: [
         {
@@ -53,14 +53,15 @@ function AddTest({ history, match, app }) {
       ],
       name: "",
     },
-    mode: "onSubmit",
-    reValidateMode: "onChange",
+    mode: "onChange",
   });
 
   const { fields, append, remove } = useFieldArray({
     control,
     name: "questions",
   });
+
+  console.log(errors);
 
   useEffect(async () => {
     const testId = match.params.id;
@@ -77,7 +78,6 @@ function AddTest({ history, match, app }) {
       .once("value")
       .then((snapshot) => {
         const data = snapshot.val();
-        setTestData(data);
         return data;
       })
       .catch((error) => console.log(error));
@@ -155,10 +155,10 @@ function AddTest({ history, match, app }) {
         removeQuestion={removeQuestion.bind(this, index)}
         rightAnswer={{
           name: `questions[${index}].rightAnswerIndex`,
-          index: item.rightAnswerIndex,
+          index: +item.rightAnswerIndex,
         }}
         register={register}
-        errors={errors}
+        errors={errors?.questions ? errors.questions[index] : null}
       />
     );
   });
@@ -202,6 +202,7 @@ function AddTest({ history, match, app }) {
               placeholder="Enter your test name"
               id="name"
               type="text"
+              errorMessage={errors?.name ? errors.name.message : null}
             />
             <hr className="my-5" />
             {questionJSX}

@@ -11,7 +11,7 @@ import Inputs from "../Shared/Forms/Inputs/Inputs";
 import Button from "../Shared/Button";
 import Toaster from "../Shared/Toaster";
 
-function SignUp({ doSignUp, app, signUp, history, isLogged }) {
+function SignUp({ doSignUp, signUp, history, isLogged }) {
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(signUpSchema),
     mode: "onChange",
@@ -30,9 +30,6 @@ function SignUp({ doSignUp, app, signUp, history, isLogged }) {
   return isLogged == false ? (
     <main className="auth sign-up">
       <div className="container">
-        {signUp?.errors ? (
-          <Toaster show={true} type="danger" message={signUp.errors} />
-        ) : null}
         <form onSubmit={handleSubmit(onSubmit)}>
           <h1>Sign Up</h1>
           <p>
@@ -43,6 +40,9 @@ function SignUp({ doSignUp, app, signUp, history, isLogged }) {
             errors={errors}
             register={register}
           />
+          {signUp?.errors ? (
+            <Toaster show={true} type="danger" message={signUp.errors} />
+          ) : null}
           <Button
             title="Sign Up"
             classes="btn-primary d-block mr-md-0 mx-auto"
@@ -56,7 +56,6 @@ function SignUp({ doSignUp, app, signUp, history, isLogged }) {
 
 const mapStateToProps = (state) => {
   return {
-    app: state.auth.app,
     isLogged: state.auth.user.isLogged,
     signUp: state.auth.signUp,
   };

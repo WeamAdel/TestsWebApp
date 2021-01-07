@@ -1,15 +1,25 @@
 .navbar {
-  background-color: var(--blue-900);
+  background-color: var(--blue-900) !important;
   box-shadow: 0 2px 0.5rem rgb(104 18 191 / 34%);
   border-bottom: 1px solid var(--purple-900);
   padding: 0 !important;
 
   .container {
     height: 100%;
+    padding-right: 15px !important;
+    padding-left: 15px !important;
+  }
+
+  .logo {
+    font-size: 16px;
   }
 
   .dropdown-toggle {
     margin-left: 12px;
+  }
+
+  .navbar-toggler {
+    background-color: var(--blue-800);
   }
 
   .dropdown-menu {
@@ -50,7 +60,7 @@
       }
 
       &.nav-link {
-        padding: 10px 20px;
+        padding: 10px 20px !important;
 
         &:hover {
           background-color: var(--blue-500);

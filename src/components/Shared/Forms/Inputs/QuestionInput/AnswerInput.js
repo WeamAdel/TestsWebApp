@@ -51,7 +51,7 @@ AnswerInput.propTypes = {
   id: PropTypes.string.isRequired,
   defaultValue: PropTypes.any,
   rightAnswer: PropTypes.shape({
-    index: PropTypes.string.isRequired,
+    index: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
   }).isRequired,
   questionIndex: PropTypes.number.isRequired,

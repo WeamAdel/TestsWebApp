@@ -204,16 +204,24 @@ form .error-message::first-letter {
 }
 
 .navbar {
-  background-color: var(--blue-900);
+  background-color: var(--blue-900) !important;
   box-shadow: 0 2px 0.5rem rgba(104, 18, 191, 0.34);
   border-bottom: 1px solid var(--purple-900);
   padding: 0 !important;
 }
 .navbar .container {
   height: 100%;
+  padding-right: 15px !important;
+  padding-left: 15px !important;
+}
+.navbar .logo {
+  font-size: 16px;
 }
 .navbar .dropdown-toggle {
   margin-left: 12px;
+}
+.navbar .navbar-toggler {
+  background-color: var(--blue-800);
 }
 .navbar .dropdown-menu {
   background-color: var(--blue-900);
@@ -247,7 +255,7 @@ form .error-message::first-letter {
   background-color: var(--purple-900);
 }
 .navbar ul a.nav-link {
-  padding: 10px 20px;
+  padding: 10px 20px !important;
 }
 .navbar ul a.nav-link:hover {
   background-color: var(--blue-500);
@@ -470,19 +478,6 @@ main.auth form h1 + p a:hover {
 .tests h1 {
   margin: 60px 0 44px;
 }
-.tests .no-data {
-  color: white;
-  text-align: center;
-  border: 1px dotted var(--purple-900);
-  padding: 32px;
-}
-.tests .no-data img {
-  min-width: 120px;
-  margin-bottom: 4px;
-}
-.tests .no-data a {
-  color: var(--violet-200);
-}
 .tests .cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
@@ -493,6 +488,7 @@ main.auth form h1 + p a:hover {
   background-color: var(--blue-700);
   padding: 24px 16px;
   transition: all 0.3s ease-in-out;
+  max-width: 250px;
 }
 .tests .cards > li a:hover {
   text-decoration: none !important;
@@ -506,30 +502,46 @@ main.auth form h1 + p a:hover {
   box-shadow: 0 0 1rem rgba(104, 18, 191, 0.1);
 }
 .tests .cards .info-card {
-  width: 54px;
+  width: 56px;
 }
 .tests .cards .info-card > div {
   background-color: var(--blue-800);
   border-radius: 12px;
-  height: 60px;
+  height: 64px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 12px 16px;
+  padding: 12px 16px 10px;
 }
 .tests .cards .info-card > div i {
   color: var(--violet-900);
+  font-size: 18px;
 }
 .tests .cards .info-card > div p {
   color: white;
   font-weight: bold;
-  margin-top: 4px;
+  margin-top: 2px;
 }
 .tests .cards .info-card > p {
-  font-size: 10px;
+  font-size: 11px;
   color: var(--violet-200);
   text-align: center;
+  font-weight: 500;
+  margin-top: 4px;
+}
+.tests .no-data {
+  color: white;
+  text-align: center;
+  border: 1px dotted var(--purple-900);
+  padding: 32px;
+}
+.tests .no-data img {
+  min-width: 120px;
+  margin-bottom: 4px;
+}
+.tests .no-data a {
+  color: var(--violet-200);
 }
 
 /*# sourceMappingURL=app.css.map */

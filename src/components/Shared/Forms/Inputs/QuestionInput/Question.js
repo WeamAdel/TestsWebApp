@@ -24,6 +24,11 @@ export default function Question({
         index={index}
         register={register}
         id={answerId}
+        errorMessage={
+          (errors?.answers ? errors.answers[index] : null)
+            ? errors.answers[index].message
+            : null
+        }
         {...answer}
       />
     );
@@ -45,6 +50,7 @@ export default function Question({
         placeholder="Enter your question"
         type="text"
         defaultValue={question}
+        errorMessage={errors?.question ? errors.question.message : null}
       />
       <fieldset>
         <legend>Answers</legend>
@@ -61,5 +67,5 @@ Question.propTypes = {
   rightAnswer: PropTypes.object.isRequired,
   register: PropTypes.any.isRequired,
   removeQuestion: PropTypes.func.isRequired,
-  errors: PropTypes.object,
+  errors: PropTypes.any,
 };

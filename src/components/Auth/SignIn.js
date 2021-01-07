@@ -29,9 +29,6 @@ function SignIn({ doSignIn, app, signIn, history, isLogged }) {
   return isLogged == false ? (
     <main className="auth sign-in">
       <div className="container">
-        {signIn?.errors ? (
-          <Toaster show={true} type="danger" message={signIn.errors} />
-        ) : null}
         <form onSubmit={handleSubmit(onSubmit)}>
           <h1>Sign In</h1>
           <p>
@@ -42,6 +39,9 @@ function SignIn({ doSignIn, app, signIn, history, isLogged }) {
             errors={errors}
             register={register}
           />
+          {signIn?.errors ? (
+            <Toaster show={true} type="danger" message={signIn.errors} />
+          ) : null}
           <Button
             title="Sign In"
             classes="btn-primary d-block mr-md-0 mx-auto"
