@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
 
 export const onAuthSuccess = function (state, payload) {
-  console.log(payload);
   const data = { uid: payload.uid, apiToken: payload.apiToken };
 
   storeLoginData(data);
@@ -11,6 +10,26 @@ export const onAuthSuccess = function (state, payload) {
     user: {
       ...state.user,
       isLogged: true,
+    },
+    signIn: {
+      ...state.signIn,
+      errors: false,
+    },
+    signUp: {
+      ...state.signUp,
+      errors: false,
+    },
+  };
+};
+
+export const onAuthFail = function (state, errors) {
+  console.log(errors);
+
+  return {
+    ...state,
+    signIn: {
+      ...state.signIn,
+      errors: errors,
     },
   };
 };

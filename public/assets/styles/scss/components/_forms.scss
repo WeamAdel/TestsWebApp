@@ -22,7 +22,7 @@ form {
     border-color: transparent;
     height: 40px;
     &.invalid {
-      border-color: var(--danger);
+      border-color: var(--danger-900);
     }
     &:focus {
       box-shadow: 0 0 0 0.2rem rgb(104 18 191);

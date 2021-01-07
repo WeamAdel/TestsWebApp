@@ -8,6 +8,13 @@ const onAuthSuccess = ({ apiToken, uid }) => {
   };
 };
 
+const onAuthFail = (errors) => {
+  return {
+    type: ActionTypes.ON_AUTH_FAIL,
+    payload: errors,
+  };
+};
+
 const updateSignUpLoadingStatus = (stauts) => {
   return {
     type: ActionTypes.UPDATE_SIGN_UP_LOADING_STATUS,
@@ -74,6 +81,7 @@ export const doAPISignIn = ({ email, password }) => (dispatch) => {
     .post(apiEndPoint, { email, password, returnSecureToken: true })
     .then((res) => {
       dispatch(updateSignInLoadingStatus(false));
+
       if (res.status == 200) {
         const data = res.data;
         dispatch(
@@ -87,6 +95,13 @@ export const doAPISignIn = ({ email, password }) => (dispatch) => {
     .catch((error) => {
       dispatch(updateSignInLoadingStatus(false));
       console.log(error);
+      if ((error.status = 400)) {
+        const message =
+          error.message == "EMAIL_NOT_FOUND"
+            ? "This email does not exist"
+            : "Invalid password";
+        dispatch(onAuthFail(message));
+      }
     });
 };
 

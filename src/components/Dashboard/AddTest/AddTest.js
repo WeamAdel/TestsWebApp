@@ -103,7 +103,6 @@ function AddTest({ history, match, app }) {
   }
 
   function doAPISubmitTest(testData) {
-    console.log(testData);
     setTest({
       ...test,
       isLoading: true,
@@ -117,7 +116,6 @@ function AddTest({ history, match, app }) {
         .ref(`tests/${app.uid}/`)
         .push(testData)
         .then((response) => {
-          console.log(response);
           onTestSuccuess(response.key);
         })
         .catch((error) => {
@@ -174,7 +172,7 @@ function AddTest({ history, match, app }) {
     const question = {
       qid: quesId,
       question: "",
-      answers: [],
+      answers: ["", "", "", ""],
       rightAnswerIndex: "",
     };
     append(question);

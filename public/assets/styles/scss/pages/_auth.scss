@@ -8,6 +8,10 @@ main.auth {
     padding-bottom: 32px;
   }
 
+  .toaster {
+    min-width: min(100%, 400px);
+  }
+
   h1 {
     font-size: 32px;
     margin-bottom: 4px;

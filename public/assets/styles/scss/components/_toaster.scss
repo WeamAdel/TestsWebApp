@@ -2,16 +2,34 @@
   color: white;
   margin: 0;
   padding: 16px;
-  background-color: var(--blue-800);
   border-radius: 12px;
   max-width: 300px;
   font-size: 14px;
-  position: fixed;
-  right: 32px;
-  transform: translateX(200%);
-  opacity: 0.8;
-  transition: all 0.25s ease-in-out;
+  position: fixed !important;
+  top: 12px;
+  left: 50%;
   z-index: 2;
+  transform: translateX(-50%);
+  transition: all 0.25s ease-in-out;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+
+  .close:hover {
+    color: white;
+  }
+
+  .icon {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+    border-radius: 50%;
+    color: rgba(white, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+  }
 
   &.show {
     transform: none;
@@ -19,9 +37,16 @@
   }
 
   &.success {
-    border: 2px solid greenyellow;
-    i {
-      color: greenyellow;
+    background-color: var(--success-800) !important;
+    icon {
+      background-color: var(--success-700);
+    }
+  }
+
+  &.danger {
+    background-color: var(--danger-800) !important;
+    icon {
+      background-color: var(--danger-700);
     }
   }
 }

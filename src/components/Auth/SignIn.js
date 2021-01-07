@@ -8,6 +8,7 @@ import { doAPISignIn } from "../../redux/auth/ActionCreators";
 import { connect } from "react-redux";
 import Inputs from "../Shared/Forms/Inputs/Inputs";
 import Button from "../Shared/Button";
+import Toaster from "../Shared/Toaster";
 
 function SignIn({ doSignIn, app, signIn, history, isLogged }) {
   const { register, handleSubmit, errors } = useForm({
@@ -28,6 +29,9 @@ function SignIn({ doSignIn, app, signIn, history, isLogged }) {
   return isLogged == false ? (
     <main className="auth sign-in">
       <div className="container">
+        {signIn?.errors ? (
+          <Toaster show={true} type="danger" message={signIn.errors} />
+        ) : null}
         <form onSubmit={handleSubmit(onSubmit)}>
           <h1>Sign In</h1>
           <p>

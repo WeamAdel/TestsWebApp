@@ -25,6 +25,8 @@ export default function reducer(state = initState, action) {
   switch (action.type) {
     case ActionTypes.ON_AUTH_SUCCESS:
       return Utility.onAuthSuccess(state, action.payload);
+    case ActionTypes.ON_AUTH_FAIL:
+      return Utility.onAuthFail(state, action.payload);
     case ActionTypes.UPDATE_SIGN_UP_LOADING_STATUS:
       return Utility.updateSignUpLoadingStatus(state, action.payload);
     case ActionTypes.UPDATE_SIGN_IN_LOADING_STATUS:
