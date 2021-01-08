@@ -1,18 +1,18 @@
-.tests {
+main.tests {
+  padding: 60px 0;
   h1 {
-    margin: 60px 0 44px;
+    margin-bottom: 44px;
   }
 
   .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(230px, 250px));
     gap: 20px;
     > li {
       border-top: 2px solid var(--purple-900);
       background-color: var(--blue-700);
       padding: 24px 16px;
       transition: all 0.3s ease-in-out;
-      max-width: 250px;
 
       a:hover {
         text-decoration: none !important;
@@ -71,6 +71,28 @@
     }
     a {
       color: var(--violet-200);
+    }
+  }
+
+  .recent-answers {
+    background-color: var(--blue-800);
+    border-radius: 20px;
+    padding: 32px 24px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: box-shadow 0.25s ease-out;
+    h2 {
+      font-size: 18px;
+    }
+    .no-answers {
+      color: var(--blue-500);
+      font-size: 18px;
+      font-weight: 500;
+    }
+    &:hover {
+      box-shadow: 0 60px 120px rgba(27, 17, 69, 0.3);
     }
   }
 }

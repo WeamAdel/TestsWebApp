@@ -5,6 +5,7 @@ import firebase from "../../../configs/firebase";
 import PageSpinner from "../../Shared/Spinners/PageSpinner";
 import TestCard from "./TestCard";
 import NoData from "./NoData";
+import RecentAnswers from "./RecentAsnswers";
 
 function Tests({ app, isLogged }) {
   const [tests, setTests] = useState({
@@ -59,13 +60,14 @@ function Tests({ app, isLogged }) {
     <Page classes="dashboard tests">
       <div className="row">
         <div className="tests-col col-md-8 mb-5 mb-md-0">
-          <h1>Your Tests</h1>
+          <h1 className="underline">Your Tests</h1>
           {testsJSX ? (
             <ul className="cards list-unstyled p-0 m-0">{testsJSX}</ul>
           ) : (
             <NoData />
           )}
         </div>
+        <RecentAnswers answers={null} />
       </div>
     </Page>
   );

@@ -25,15 +25,46 @@
   .dropdown-menu {
     background-color: var(--blue-900);
     border: 1px solid var(--purple-900);
+    top: calc(100% + 8px);
     right: 0;
     left: unset;
-    padding: 0;
+    padding: 24px 16px;
+
+    hr {
+      margin: 8px 0;
+    }
 
     .dropdown-item {
+      padding: 0;
+      height: auto;
       &:hover {
         background-color: transparent;
-        color: var(--purple-900);
+        &:not(.user-info) {
+          color: var(--violet-200);
+        }
       }
+    }
+  }
+
+  .user-info {
+    display: flex;
+    align-items: flex-start;
+    img {
+      max-width: 40px;
+      margin-right: 8px;
+    }
+    h3 {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 0;
+    }
+    span {
+      font-size: 14px;
+      color: rgba(white, 0.6);
+    }
+    &:hover {
+      color: white;
+      opacity: 0.8;
     }
   }
 

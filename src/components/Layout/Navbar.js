@@ -51,10 +51,7 @@ function Navbar({ doLogout, user }) {
                 <i className="fa fa-cogs" />
               </a>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <Link
-                  className="user-info dropdown-item d-block"
-                  to="/dashboard"
-                >
+                <Link className="user-info dropdown-item" to="/dashboard">
                   <img src="/assets/images/avatar.png" alt="avatar" />
                   <div>
                     <h3>{user.username}</h3>
@@ -63,7 +60,7 @@ function Navbar({ doLogout, user }) {
                 </Link>
                 <hr />
                 <a className="dropdown-item" href="#" onClick={doLogout}>
-                  <i className="fa fa-sign-out" /> Logout
+                  <i className="fa fa-sign-out mr-2" /> Logout
                 </a>
               </div>
             </li>
