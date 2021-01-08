@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { doLogout } from "../../redux/auth/ActionCreators";
 import { NavLink, Link } from "react-router-dom";
 
-function Navbar({ doLogout }) {
+function Navbar({ doLogout, user }) {
   return (
     <nav className="navbar navbar-expand-md">
       <div className="container">
@@ -51,8 +51,19 @@ function Navbar({ doLogout }) {
                 <i className="fa fa-cogs" />
               </a>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <Link
+                  className="user-info dropdown-item d-block"
+                  to="/dashboard"
+                >
+                  <img src="/assets/images/avatar.png" alt="avatar" />
+                  <div>
+                    <h3>{user.username}</h3>
+                    <span>{user.email}</span>
+                  </div>
+                </Link>
+                <hr />
                 <a className="dropdown-item" href="#" onClick={doLogout}>
-                  <i className="fa fa-fa-sign-out" /> Logout
+                  <i className="fa fa-sign-out" /> Logout
                 </a>
               </div>
             </li>
@@ -63,6 +74,12 @@ function Navbar({ doLogout }) {
   );
 }
 
+const mapStateToProps = (state) => {
+  return {
+    user: state.auth.user,
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     doLogout: () => {
@@ -71,4 +88,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Navbar);
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

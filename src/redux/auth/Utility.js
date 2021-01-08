@@ -1,14 +1,16 @@
-import { connect } from "react-redux";
-
-export const onAuthSuccess = function (state, payload) {
-  const data = { uid: payload.uid, apiToken: payload.apiToken };
+export const onAuthSuccess = function (
+  state,
+  { username, email, uid, apiToken }
+) {
+  const data = { uid, apiToken };
 
   storeLoginData(data);
   return {
     ...state,
     app: data,
     user: {
-      ...state.user,
+      username,
+      email,
       isLogged: true,
     },
     signIn: {
@@ -62,16 +64,20 @@ export const updateSignInLoadingStatus = function (state, status) {
   };
 };
 
-export const setAppData = function (state, appData) {
+export const setAppData = function (state, { uid, apiToken, username, email }) {
   return {
     ...state,
-    app: {
-      uid: appData ? appData.uid : null,
-      apiToken: appData ? appData.apiToken : null,
-    },
+    app: uid
+      ? {
+          uid,
+          apiToken,
+        }
+      : state.app,
     user: {
       ...state.user,
-      isLogged: appData?.uid ? true : false,
+      username: username ?? null,
+      email: email ?? null,
+      isLogged: uid ? true : false,
     },
   };
 };

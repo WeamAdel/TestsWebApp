@@ -2,20 +2,45 @@ import { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { setAppData } from "../redux/auth/ActionCreators";
+import firebase from "../configs/firebase";
 import PageSpinner from "./Shared/Spinners/PageSpinner";
 
-function AppWrapper({ children, setAppData, history, isLogged }) {
+function AppWrapper({ children, setAppData, getAPIUser, history, isLogged }) {
   const [appDataStatus, setAppDataStatus] = useState(false);
 
   //Read app data from localStorage
   useEffect(() => {
     getAppDate()
-      .then((data) => {
+      .then(async (data) => {
+        if (data.uid) {
+          const { email, username } = await getAPIUser(data.uid);
+          console.log(email);
+          setAppData({
+            uid: data.uid,
+            apiToken: data.apiToken,
+            email,
+            username,
+          });
+        } else setAppData(data);
         setAppDataStatus(true);
-        setAppData(data);
       })
       .catch((error) => console.log(error));
   }, []);
+
+  async function getAPIUser(uid) {
+    const userData = await firebase
+      .database()
+      .ref("users/" + uid)
+      .once("value")
+      .then((snapshot) => {
+        return snapshot.val();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    console.log(userData);
+    return userData;
+  }
 
   //Redirect logged users to dashboard
   useEffect(() => {

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function TestCard({ id, name, questionsCount }) {
   return (
-    <li className="text-center mx-auto">
+    <li className="text-center mx-auto mx-md-0">
       <Link to={"/dashboard/test/" + id}>
         <h2>{name}</h2>
         <ul className="list-unstyled p-0 d-flex justify-content-center">

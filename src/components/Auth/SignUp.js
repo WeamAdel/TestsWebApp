@@ -19,7 +19,11 @@ function SignUp({ doSignUp, signUp, history, isLogged }) {
 
   const onSubmit = (data) => {
     console.log(data);
-    doSignUp({ password: data.password, email: data.email });
+    doSignUp({
+      password: data.password,
+      email: data.email,
+      username: data.username,
+    });
   };
 
   //Redirect user if signed in
@@ -63,8 +67,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    doSignUp: ({ email, password }) => {
-      dispatch(doAPISignUp({ email, password }));
+    doSignUp: (data) => {
+      dispatch(doAPISignUp(data));
     },
   };
 };

@@ -1,10 +1,11 @@
 import * as ActionTypes from "./ActionTypes";
+import firebase from "../../configs/firebase";
 import axios from "axios";
 
-const onAuthSuccess = ({ apiToken, uid }) => {
+const onAuthSuccess = (userData) => {
   return {
     type: ActionTypes.ON_AUTH_SUCCESS,
-    payload: { apiToken, uid },
+    payload: userData,
   };
 };
 
@@ -45,7 +46,7 @@ export const doLogout = () => {
 /* API Actions */
 const projectWebAPIKey = "AIzaSyDmoM405gtzCzG5nTHLJ5ffWg2tBNRp6Ug";
 
-export const doAPISignUp = ({ email, password }) => (dispatch) => {
+export const doAPISignUp = ({ email, password, username }) => (dispatch) => {
   const apiEndPoint =
     "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" +
     projectWebAPIKey;
@@ -54,16 +55,20 @@ export const doAPISignUp = ({ email, password }) => (dispatch) => {
   axios
     .post(apiEndPoint, { email, password, returnSecureToken: true })
     .then((res) => {
+      const data = res.data;
+      dispatch(
+        onAuthSuccess({
+          apiToken: data.idToken,
+          uid: data.localId,
+          username,
+          email,
+        })
+      );
+      return data.localId;
+    })
+    .then((userId) => {
       dispatch(updateSignUpLoadingStatus(false));
-      if (res.status == 200) {
-        const data = res.data;
-        dispatch(
-          onAuthSuccess({
-            apiToken: data.idToken,
-            uid: data.localId,
-          })
-        );
-      }
+      return doAPISaveUserData({ id: userId, username, email });
     })
     .catch((error) => {
       console.log(error);
@@ -81,6 +86,13 @@ export const doAPISignUp = ({ email, password }) => (dispatch) => {
       dispatch(onAuthFail({ message, page: "signUp" }));
     });
 };
+
+async function doAPISaveUserData({ id, username, email }) {
+  await firebase.database().ref(`users/${id}`).set({
+    username,
+    email,
+  });
+}
 
 export const doAPISignIn = ({ email, password }) => (dispatch) => {
   const apiEndPoint =

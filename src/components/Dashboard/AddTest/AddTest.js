@@ -12,6 +12,20 @@ import Button from "../../Shared/Button";
 import Input from "../../Shared/Forms/Inputs/Input";
 import Toaster from "../../Shared/Toaster";
 
+const getDefaultValues = () => {
+  return {
+    questions: [
+      {
+        qid: "q1",
+        question: "",
+        rightAnswerIndex: "",
+        answers: ["", "", "", ""],
+      },
+    ],
+    name: "",
+  };
+};
+
 function AddTest({ history, match, app }) {
   const [test, setTest] = useState({
     id: null,
@@ -35,24 +49,30 @@ function AddTest({ history, match, app }) {
         id: testId,
       });
       setIsEditing(true);
-    } else {
-      setIsEditing(false);
-    }
+    } else setIsEditing(false);
   }, []);
+
+  /* 
+    When the user clicks add test(in navbar) when already editing one 
+    i.e editing already saved test, 
+    the form is reset
+  */
+  useEffect(() => {
+    if (!match.params.id) {
+      reset(getDefaultValues());
+      setIsEditing(false);
+      setTest({
+        id: null,
+        isLoading: false,
+        success: null,
+        failed: null,
+      });
+    }
+  }, [match.params.id]);
 
   const { register, handleSubmit, errors, control, reset } = useForm({
     resolver: yupResolver(testSchema),
-    defaultValues: {
-      questions: [
-        {
-          qid: "q1",
-          question: "",
-          rightAnswerIndex: "",
-          answers: ["", "", "", ""],
-        },
-      ],
-      name: "",
-    },
+    defaultValues: getDefaultValues(),
     mode: "onChange",
   });
 
@@ -60,8 +80,6 @@ function AddTest({ history, match, app }) {
     control,
     name: "questions",
   });
-
-  console.log(errors);
 
   useEffect(async () => {
     const testId = match.params.id;
@@ -172,8 +190,8 @@ function AddTest({ history, match, app }) {
     const question = {
       qid: quesId,
       question: "",
-      answers: ["", "", "", ""],
       rightAnswerIndex: "",
+      answers: ["", "", "", ""],
     };
     append(question);
   }
