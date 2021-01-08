@@ -3,11 +3,10 @@ import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import firebase from "../../../configs/firebase";
 import PageSpinner from "../../Shared/Spinners/PageSpinner";
-import TestCard from "./TestCard";
-import NoData from "./NoData";
-import RecentAnswers from "./RecentAsnswers";
+import AdminTests from "./AdminTests/AdminTests";
+import AllTests from "./AllTests/AllTests";
 
-function Tests({ app, isLogged }) {
+function Tests({ app, isLogged, user }) {
   const [tests, setTests] = useState({
     data: null,
     isLoading: true,
@@ -16,19 +15,19 @@ function Tests({ app, isLogged }) {
 
   //Get all user's tests if logged
   useEffect(() => {
-    if (isLogged == true && app.uid) {
-      getAPITests();
-    }
-  }, [isLogged]);
+    if (isLogged == true && app.uid && user.isAdmin != null) getAPITests();
+  }, [isLogged, user.isAdmin]);
 
   function getAPITests() {
+    // if the user is admin, get its tests, if not get all tests
+    const url = user.isAdmin ? "tests/" + app.uid : "tests";
     firebase
       .database()
-      .ref("tests/" + app.uid)
+      .ref(url)
       .once("value")
       .then((snapshot) => {
         const tests = snapshot.val();
-
+        console.log(tests);
         setTests({
           isLoading: false,
           data: tests,
@@ -40,35 +39,17 @@ function Tests({ app, isLogged }) {
       });
   }
 
-  const testsData = tests.data;
-  const testsJSX = testsData
-    ? Object.keys(testsData).map((id) => {
-        return (
-          <TestCard
-            key={id}
-            id={id}
-            name={testsData[id].name}
-            questionsCount={testsData[id].questions.length}
-          />
-        );
-      })
-    : null;
-
   return tests.isLoading ? (
     <PageSpinner />
   ) : (
     <Page classes="dashboard tests">
-      <div className="row">
-        <div className="tests-col col-md-8 mb-5 mb-md-0">
-          <h1 className="underline">Your Tests</h1>
-          {testsJSX ? (
-            <ul className="cards list-unstyled p-0 m-0">{testsJSX}</ul>
-          ) : (
-            <NoData />
-          )}
-        </div>
-        <RecentAnswers answers={null} />
-      </div>
+      {user.isAdmin != null ? (
+        user.isAdmin ? (
+          <AdminTests tests={tests.data} />
+        ) : (
+          <AllTests tests={tests.data} />
+        )
+      ) : null}
     </Page>
   );
 }
@@ -77,6 +58,7 @@ const mapStateToProps = (state) => {
   return {
     isLogged: state.auth.user.isLogged,
     app: state.auth.app,
+    user: state.auth.user,
   };
 };
 

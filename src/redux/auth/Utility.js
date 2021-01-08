@@ -1,6 +1,6 @@
 export const onAuthSuccess = function (
   state,
-  { username, email, uid, apiToken }
+  { username, email, uid, apiToken, isAdmin }
 ) {
   const data = { uid, apiToken };
 
@@ -11,6 +11,7 @@ export const onAuthSuccess = function (
     user: {
       username,
       email,
+      isAdmin: isAdmin ? true : false,
       isLogged: true,
     },
     signIn: {
@@ -64,22 +65,34 @@ export const updateSignInLoadingStatus = function (state, status) {
   };
 };
 
-export const setAppData = function (state, { uid, apiToken, username, email }) {
-  return {
-    ...state,
-    app: uid
-      ? {
-          uid,
-          apiToken,
-        }
-      : state.app,
-    user: {
-      ...state.user,
-      username: username ?? null,
-      email: email ?? null,
-      isLogged: uid ? true : false,
-    },
-  };
+export const setAppData = function (state, data) {
+  if (data && data.uid) {
+    const { uid, email, username, isAdmin, apiToken } = data;
+    return {
+      ...state,
+      app: uid
+        ? {
+            uid,
+            apiToken,
+          }
+        : state.app,
+      user: {
+        ...state.user,
+        username: username ?? null,
+        email: email ?? null,
+        isLogged: uid ? true : false,
+        isAdmin: isAdmin ? true : false,
+      },
+    };
+  } else {
+    return {
+      ...state,
+      user: {
+        ...state.user,
+        isLogged: false,
+      },
+    };
+  }
 };
 
 export const doLogout = function (state) {
@@ -93,6 +106,7 @@ export const doLogout = function (state) {
     user: {
       username: null,
       email: null,
+      isAdmin: null,
       isLogged: false,
     },
   };

@@ -62,6 +62,7 @@ export const doAPISignUp = ({ email, password, username }) => (dispatch) => {
           uid: data.localId,
           username,
           email,
+          isAdmin: false,
         })
       );
       return data.localId;
@@ -104,25 +105,36 @@ export const doAPISignIn = ({ email, password }) => (dispatch) => {
     .post(apiEndPoint, { email, password, returnSecureToken: true })
     .then((res) => {
       dispatch(updateSignInLoadingStatus(false));
+      if (res.status == 200) return res.data;
+    })
+    .then(async (data) => {
+      const { username, isAdmin } = await firebase
+        .database()
+        .ref("users/" + data.localId)
+        .once("value")
+        .then((snapshot) => snapshot.val());
 
-      if (res.status == 200) {
-        const data = res.data;
-        dispatch(
-          onAuthSuccess({
-            apiToken: data.idToken,
-            uid: data.localId,
-          })
-        );
-      }
+      dispatch(
+        onAuthSuccess({
+          apiToken: data.idToken,
+          uid: data.localId,
+          username,
+          isAdmin,
+          email,
+        })
+      );
     })
     .catch((error) => {
+      console.log(error);
       dispatch(updateSignInLoadingStatus(false));
 
       if ((error.status = 400)) {
-        const message =
-          error.message == "EMAIL_NOT_FOUND"
-            ? "This email does not exist"
-            : "Invalid password";
+        let message = "Something went wrong!";
+        if (error.message == "EMAIL_NOT_FOUND")
+          message = "This email does not exist";
+        else if (error.message == "INVALID_PASSWORD")
+          message = "Invalid password";
+
         dispatch(onAuthFail({ message, page: "signIn" }));
       }
     });

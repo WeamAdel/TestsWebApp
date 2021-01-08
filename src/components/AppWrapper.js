@@ -12,14 +12,14 @@ function AppWrapper({ children, setAppData, getAPIUser, history, isLogged }) {
   useEffect(() => {
     getAppDate()
       .then(async (data) => {
-        if (data.uid) {
-          const { email, username } = await getAPIUser(data.uid);
-          console.log(email);
+        if (data && data.uid) {
+          const { email, username, isAdmin } = await getAPIUser(data.uid);
           setAppData({
             uid: data.uid,
             apiToken: data.apiToken,
             email,
             username,
+            isAdmin,
           });
         } else setAppData(data);
         setAppDataStatus(true);

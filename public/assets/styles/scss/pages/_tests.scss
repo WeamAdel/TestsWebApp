@@ -5,6 +5,12 @@ main.tests {
   }
 
   .cards {
+    a:hover {
+      text-decoration: none !important;
+    }
+  }
+
+  .admin-cards {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(230px, 250px));
     gap: 20px;
@@ -14,11 +20,7 @@ main.tests {
       padding: 24px 16px;
       transition: all 0.3s ease-in-out;
 
-      a:hover {
-        text-decoration: none !important;
-      }
-
-      h2 {
+      h3 {
         font-size: 20px;
         margin-bottom: 16px;
       }
@@ -56,6 +58,37 @@ main.tests {
         text-align: center;
         font-weight: 500;
         margin-top: 4px;
+      }
+    }
+  }
+
+  .user-cards {
+    li {
+      a {
+        display: flex;
+        width: 100%;
+        background-color: var(--blue-700);
+        border-radius: 12px;
+        padding: 8px 12px;
+        justify-content: space-between;
+        align-items: center;
+        transition: all 0.3s ease-in-out;
+        border: 1px solid transparent;
+
+        h3 {
+          font-size: 18px;
+          margin: 0;
+        }
+
+        color: var(--violet-200);
+
+        &:hover {
+          transform: scale(1.03);
+          border-color: 1px solid var(--purple-900);
+        }
+      }
+      &:not(:last-child) {
+        margin-bottom: 8px;
       }
     }
   }

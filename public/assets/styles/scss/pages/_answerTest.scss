@@ -1,0 +1,43 @@
+main.answer-test {
+  padding: 60px 0;
+  h1 {
+    margin-bottom: 44px;
+  }
+  h2 {
+    font-size: 18px;
+    font-family: "Times New Roman", Times, serif;
+    margin-bottom: 24px;
+  }
+
+  hr {
+    margin: 44px 0;
+  }
+
+  .answer {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+
+    p {
+      width: 100%;
+      background-color: var(--violet-800);
+      color: white;
+      border-radius: 9px;
+      padding: 8px 16px;
+      margin-bottom: 0;
+      border: 2px solid transparent;
+    }
+
+    input:checked {
+      + p {
+        border-color: var(--purple-900);
+        transform: scale(1.02);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 12px;
+    }
+  }
+}

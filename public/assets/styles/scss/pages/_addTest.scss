@@ -51,50 +51,8 @@
       align-items: center;
     }
 
-    .radio-wrapper {
-      margin-left: 8px;
-      position: relative;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      input {
-        opacity: 0.01;
-        width: 25px;
-        height: 25px;
-        display: block;
-        position: relative;
-        z-index: 2;
-        cursor: pointer;
-        &:checked + .custom-radio i {
-          color: greenyellow;
-        }
-        &:focus + .custom-radio {
-          border-radius: 50%;
-          border: 1px solid var(--purple-900);
-        }
-      }
-    }
-    .custom-radio {
-      width: 25px;
-      height: 25px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      i {
-        display: block;
-        color: var(--violet-800);
-        &:hover {
-          color: var(--violet-200);
-        }
-      }
+    .custom-radio input[type="radio"]:checked + i {
+      color: yellowgreen;
     }
   }
 

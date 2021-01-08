@@ -105,6 +105,30 @@ form .error-message {
 form .error-message::first-letter {
   text-transform: capitalize;
 }
+form .custom-radio {
+  position: relative;
+}
+form .custom-radio input[type=radio] {
+  position: relative;
+  z-index: 2;
+  width: 32px;
+  height: 32px;
+  opacity: 0.01;
+  margin-left: 16px;
+  cursor: pointer;
+}
+form .custom-radio input[type=radio]:checked + i {
+  color: var(--purple-900);
+}
+form .custom-radio i {
+  font-size: 32px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  z-index: 1;
+  transform: translateY(-50%);
+  color: var(--violet-800);
+}
 
 .btn.btn-primary {
   position: relative;
@@ -272,7 +296,7 @@ form .error-message::first-letter {
   max-width: 40px;
   margin-right: 8px;
 }
-.navbar .user-info h3 {
+.navbar .user-info h4 {
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 0;
@@ -466,49 +490,8 @@ main.auth form h1 + p a:hover {
   display: flex;
   align-items: center;
 }
-.dashboard main.add-test .answer .radio-wrapper {
-  margin-left: 8px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.dashboard main.add-test .answer .radio-wrapper input {
-  opacity: 0.01;
-  width: 25px;
-  height: 25px;
-  display: block;
-  position: relative;
-  z-index: 2;
-  cursor: pointer;
-}
-.dashboard main.add-test .answer .radio-wrapper input:checked + .custom-radio i {
-  color: greenyellow;
-}
-.dashboard main.add-test .answer .radio-wrapper input:focus + .custom-radio {
-  border-radius: 50%;
-  border: 1px solid var(--purple-900);
-}
-.dashboard main.add-test .answer .custom-radio {
-  width: 25px;
-  height: 25px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-}
-.dashboard main.add-test .answer .custom-radio i {
-  display: block;
-  color: var(--violet-800);
-}
-.dashboard main.add-test .answer .custom-radio i:hover {
-  color: var(--violet-200);
+.dashboard main.add-test .answer .custom-radio input[type=radio]:checked + i {
+  color: yellowgreen;
 }
 .dashboard main.add-test .add-question-btn {
   position: fixed;
@@ -532,32 +515,32 @@ main.tests {
 main.tests h1 {
   margin-bottom: 44px;
 }
-main.tests .cards {
+main.tests .cards a:hover {
+  text-decoration: none !important;
+}
+main.tests .admin-cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(230px, 250px));
   gap: 20px;
 }
-main.tests .cards > li {
+main.tests .admin-cards > li {
   border-top: 2px solid var(--purple-900);
   background-color: var(--blue-700);
   padding: 24px 16px;
   transition: all 0.3s ease-in-out;
 }
-main.tests .cards > li a:hover {
-  text-decoration: none !important;
-}
-main.tests .cards > li h2 {
+main.tests .admin-cards > li h3 {
   font-size: 20px;
   margin-bottom: 16px;
 }
-main.tests .cards > li:hover {
+main.tests .admin-cards > li:hover {
   transform: scale(1.02);
   box-shadow: 0 0 1rem rgba(104, 18, 191, 0.1);
 }
-main.tests .cards .info-card {
+main.tests .admin-cards .info-card {
   width: 56px;
 }
-main.tests .cards .info-card > div {
+main.tests .admin-cards .info-card > div {
   background-color: var(--blue-800);
   border-radius: 12px;
   height: 64px;
@@ -567,21 +550,44 @@ main.tests .cards .info-card > div {
   justify-content: center;
   padding: 12px 16px 10px;
 }
-main.tests .cards .info-card > div i {
+main.tests .admin-cards .info-card > div i {
   color: var(--violet-900);
   font-size: 18px;
 }
-main.tests .cards .info-card > div p {
+main.tests .admin-cards .info-card > div p {
   color: white;
   font-weight: bold;
   margin-top: 2px;
 }
-main.tests .cards .info-card > p {
+main.tests .admin-cards .info-card > p {
   font-size: 11px;
   color: var(--violet-200);
   text-align: center;
   font-weight: 500;
   margin-top: 4px;
+}
+main.tests .user-cards li a {
+  display: flex;
+  width: 100%;
+  background-color: var(--blue-700);
+  border-radius: 12px;
+  padding: 8px 12px;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid transparent;
+  color: var(--violet-200);
+}
+main.tests .user-cards li a h3 {
+  font-size: 18px;
+  margin: 0;
+}
+main.tests .user-cards li a:hover {
+  transform: scale(1.03);
+  border-color: 1px solid var(--purple-900);
+}
+main.tests .user-cards li:not(:last-child) {
+  margin-bottom: 8px;
 }
 main.tests .no-data {
   color: white;
@@ -616,6 +622,43 @@ main.tests .recent-answers .no-answers {
 }
 main.tests .recent-answers:hover {
   box-shadow: 0 60px 120px rgba(27, 17, 69, 0.3);
+}
+
+main.answer-test {
+  padding: 60px 0;
+}
+main.answer-test h1 {
+  margin-bottom: 44px;
+}
+main.answer-test h2 {
+  font-size: 18px;
+  font-family: "Times New Roman", Times, serif;
+  margin-bottom: 24px;
+}
+main.answer-test hr {
+  margin: 44px 0;
+}
+main.answer-test .answer {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+}
+main.answer-test .answer p {
+  width: 100%;
+  background-color: var(--violet-800);
+  color: white;
+  border-radius: 9px;
+  padding: 8px 16px;
+  margin-bottom: 0;
+  border: 2px solid transparent;
+}
+main.answer-test .answer input:checked + p {
+  border-color: var(--purple-900);
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+main.answer-test .answer:not(:last-child) {
+  margin-bottom: 12px;
 }
 
 /*# sourceMappingURL=app.css.map */

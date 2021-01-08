@@ -26,12 +26,14 @@ function Navbar({ doLogout, user }) {
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/dashboard/test">
-                <span>Add Test</span>
-                <i className="fa fa-plus-square ml-2" />
-              </NavLink>
-            </li>
+            {user?.isAdmin ? (
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/dashboard/test">
+                  <span>Add Test</span>
+                  <i className="fa fa-plus-square ml-2" />
+                </NavLink>
+              </li>
+            ) : null}
             <li className="nav-item">
               <NavLink className="nav-link" to="/dashboard" exact>
                 <span>Dashboard</span>
@@ -54,7 +56,7 @@ function Navbar({ doLogout, user }) {
                 <Link className="user-info dropdown-item" to="/dashboard">
                   <img src="/assets/images/avatar.png" alt="avatar" />
                   <div>
-                    <h3>{user.username}</h3>
+                    <h4>{user.username}</h4>
                     <span>{user.email}</span>
                   </div>
                 </Link>

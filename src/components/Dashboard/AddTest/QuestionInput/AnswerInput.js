@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
-import ErrorMessage from "../../ErrorMessage";
+import ErrorMessage from "../../../Shared/Forms/ErrorMessage";
+import Radio from "../../../Shared/Forms/Inputs/Radio";
 
 export default function AnswerInput({
   questionIndex,
@@ -12,6 +13,7 @@ export default function AnswerInput({
   errorMessage,
   defaultValue,
 }) {
+  const isRight = rightAnswer.index == index;
   return (
     <div className="form-group answer">
       <label className="d-none" htmlFor={id}>{`Question ${
@@ -28,18 +30,16 @@ export default function AnswerInput({
           ref={register()}
           defaultValue={defaultValue}
         />
-        <div className="radio-wrapper">
-          <input
+        <div className={"custom-radio" + (isRight ? " right" : "")}>
+          <Radio
+            classes="d-none"
+            label={`Question ${questionIndex} right answer`}
             id={"rightAnswer" + index + questionId}
             name={rightAnswer.name}
-            type="radio"
             value={index}
-            ref={register()}
-            defaultChecked={rightAnswer.index == index}
+            register={register}
+            defaultChecked={isRight}
           />
-          <div className="custom-radio">
-            <i className="fa fa-check-circle" />
-          </div>
         </div>
       </div>
       {errorMessage ? <ErrorMessage message={errorMessage} /> : null}

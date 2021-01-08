@@ -6,6 +6,7 @@ const initState = {
     username: null,
     email: null,
     isLogged: null,
+    isAdmin: null,
   },
   app: {
     uid: null,

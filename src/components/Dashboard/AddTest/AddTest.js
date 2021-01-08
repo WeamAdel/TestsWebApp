@@ -7,7 +7,7 @@ import firebase from "../../../configs/firebase";
 import Page from "../../Layout/Page";
 import QuestionCounter from "./QuestionsCounter";
 import AddQuestionBtn from "./AddQuestionBtn";
-import Question from "../../Shared/Forms/Inputs/QuestionInput/Question";
+import Question from "./QuestionInput/Question";
 import Button from "../../Shared/Button";
 import Input from "../../Shared/Forms/Inputs/Input";
 import Toaster from "../../Shared/Toaster";
@@ -26,7 +26,7 @@ const getDefaultValues = () => {
   };
 };
 
-function AddTest({ history, match, app }) {
+function AddTest({ match, app }) {
   const [test, setTest] = useState({
     id: null,
     isLoading: false,

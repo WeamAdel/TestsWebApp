@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import Input from "../Input";
+import Input from "../../../Shared/Forms/Inputs/Input";
 import AnswerInput from "./AnswerInput";
 
 export default function Question({

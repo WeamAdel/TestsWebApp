@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Tests from "./Tests/Tests";
 import Test from "./AddTest/AddTest";
 import Navbar from "../Layout/Navbar";
+import AnswerTest from "./AnswerTest/AnswerTest";
 
 function Dashboard({ history, isLogged }) {
   // Redirect user to sign in if not authorized
@@ -17,6 +18,10 @@ function Dashboard({ history, isLogged }) {
     <div className="dashboard">
       <Navbar />
       <Switch>
+        <Route
+          path={"/dashboard/test/:testerId/:testId"}
+          component={AnswerTest}
+        />
         <Route path={"/dashboard/test/:id"} component={Test} />
         <Route path={"/dashboard/test"} component={Test} />
         <Route path={"/"} component={Tests} />

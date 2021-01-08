@@ -17,7 +17,6 @@ function SignIn({ doSignIn, app, signIn, history, isLogged }) {
   });
 
   const onSubmit = (data) => {
-    console.log(data);
     doSignIn({ password: data.password, email: data.email });
   };
 
