@@ -3,6 +3,7 @@
 ## Contents
 
 1. [Overview](#overview)
+1. [Demo](#demo)
 1. [Installation Instructions](#installation-instructions)
 1. [Run The App](#run-the-app)
 1. [Files Structure and Organization](#files-structure-and-organization)
@@ -17,6 +18,12 @@
 **Tests Web App** is a website for teachers to create online tests, so that they can evaluate their students.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+---
+
+## Demo
+
+Here is a **[demo](https://tender-aryabhata-cb3afa.netlify.app/)** hosted on _netlify_.
 
 ---
 
