@@ -1,11 +1,20 @@
 import { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { setAppData } from "../redux/auth/ActionCreators";
+import { setAppData, doLogout } from "../redux/auth/ActionCreators";
 import firebase from "../configs/firebase";
 import PageSpinner from "./Shared/Spinners/PageSpinner";
+import Navbar from "./Layout/Navbar";
 
-function AppWrapper({ children, setAppData, getAPIUser, history, isLogged }) {
+function AppWrapper({
+  children,
+  setAppData,
+  getAPIUser,
+  history,
+  isLogged,
+  user,
+  doLogout,
+}) {
   const [appDataStatus, setAppDataStatus] = useState(false);
 
   //Read app data from localStorage
@@ -47,7 +56,14 @@ function AppWrapper({ children, setAppData, getAPIUser, history, isLogged }) {
     const notInDahsboard = history.location.pathname.indexOf("dashboard") < 0;
     if (isLogged === true && notInDahsboard) history.push("/dashboard");
   }, [isLogged]);
-  return appDataStatus && isLogged != null ? children : <PageSpinner />;
+  return appDataStatus && isLogged != null ? (
+    <div>
+      <Navbar doLogout={doLogout} user={user} />
+      {children}
+    </div>
+  ) : (
+    <PageSpinner />
+  );
 }
 
 //Read app data form localStorage
@@ -59,6 +75,7 @@ async function getAppDate(params) {
 const mapStateToProps = (state) => {
   return {
     app: state.auth.app,
+    user: state.auth.user,
     isLogged: state.auth.user.isLogged,
   };
 };
@@ -67,6 +84,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setAppData: (appData) => {
       dispatch(setAppData(appData));
+    },
+    doLogout: () => {
+      dispatch(doLogout());
     },
   };
 };

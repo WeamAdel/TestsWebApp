@@ -1,6 +1,6 @@
 import PropTypes, { object } from "prop-types";
 import TestCard from "./TestCard";
-import NoData from "./NoData";
+import NoData from "../../../Shared/NoData";
 
 export default function AllTests({ tests }) {
   const testsJSX = tests
@@ -27,7 +27,10 @@ export default function AllTests({ tests }) {
         {testsJSX ? (
           <ul className="cards user-cards list-unstyled p-0 m-0">{testsJSX}</ul>
         ) : (
-          <NoData />
+          <NoData
+            text="There is no tests added yet, please wait until teachers add new tests"
+            imgName="q-a"
+          />
         )}
       </div>
       {/* <RecentAnswers answers={null} /> */}

@@ -101,17 +101,23 @@ function AddTest({ match, app }) {
       .catch((error) => console.log(error));
   }
 
-  function onTestSuccuess(testId) {
+  console.log(test);
+
+  function onTestSuccess(testId) {
+    console.log(testId);
     setTest({
       ...test,
       id: testId ?? test.id,
       success: true,
       isLoading: false,
     });
+
     setTimeout(() => {
-      setTest({
-        ...test,
-        success: false,
+      setTest((prevState) => {
+        return {
+          ...prevState,
+          success: false,
+        };
       });
     }, 2000);
   }
@@ -134,7 +140,7 @@ function AddTest({ match, app }) {
         .ref(`tests/${app.uid}/`)
         .push(testData)
         .then((response) => {
-          onTestSuccuess(response.key);
+          onTestSuccess(response.key);
         })
         .catch((error) => {
           onTestFail(error);
@@ -145,7 +151,7 @@ function AddTest({ match, app }) {
         .ref(`tests/${app.uid}/${test.id}`)
         .update(testData)
         .then(() => {
-          onTestSuccuess();
+          onTestSuccess();
         })
         .catch((error) => {
           onTestFail(error);

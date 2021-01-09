@@ -37,6 +37,7 @@
     .dropdown-item {
       padding: 0;
       height: auto;
+
       &:hover {
         background-color: transparent;
         &:not(.user-info) {
@@ -58,10 +59,12 @@
       font-weight: bold;
       margin-bottom: 0;
     }
+
     span {
       font-size: 14px;
       color: rgba(white, 0.6);
     }
+
     &:hover {
       color: white;
       opacity: 0.8;

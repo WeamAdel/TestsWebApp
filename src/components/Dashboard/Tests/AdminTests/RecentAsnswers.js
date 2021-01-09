@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 export default function RecentAnswers({ answers }) {
   return (
-    <div className="col-md-4">
+    <div className="col-lg-4 offset-lg-1">
       <div className="recent-answers">
         <h2>Recent Answers</h2>
         {answers ? null : (

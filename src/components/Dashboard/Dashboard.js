@@ -3,7 +3,6 @@ import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import Tests from "./Tests/Tests";
 import Test from "./AddTest/AddTest";
-import Navbar from "../Layout/Navbar";
 import AnswerTest from "./AnswerTest/AnswerTest";
 
 function Dashboard({ history, isLogged }) {
@@ -16,7 +15,6 @@ function Dashboard({ history, isLogged }) {
 
   return (
     <div className="dashboard">
-      <Navbar />
       <Switch>
         <Route
           path={"/dashboard/test/:testerId/:testId"}

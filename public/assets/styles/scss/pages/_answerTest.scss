@@ -43,22 +43,23 @@ main.answer-test {
       margin-bottom: 12px;
     }
   }
+  .pass .modal-content {
+    background-color: var(--teal);
+  }
+
+  .fail .modal-content {
+    background-color: var(--violet-800);
+    * {
+      color: white;
+    }
+  }
+
+  .fail .grade {
+    color: var(--danger-900);
+  }
 
   .modal.result {
     background-color: rgba(#2c1a52, 0.5);
-    &.pass .modal-content {
-      background-color: var(--teal);
-    }
-
-    &.fail .modal-content {
-      background-color: var(--violet-800);
-      * {
-        color: white;
-      }
-      .grade {
-        color: var(--danger-900);
-      }
-    }
 
     .modal-header {
       border-bottom-color: var(--blue-900);
@@ -110,5 +111,25 @@ main.answer-test {
 
   .error-message {
     margin-top: 8px;
+  }
+
+  .grade-details {
+    background-color: var(--blue-800);
+    text-align: center;
+    color: white;
+    font-size: 20;
+    padding: 32px;
+    border: 10px solid transparent;
+
+    &.pass {
+      border-color: var(--teal);
+      .grade {
+        color: var(--teal);
+      }
+    }
+
+    &.fail {
+      border-color: var(--danger-900);
+    }
   }
 }

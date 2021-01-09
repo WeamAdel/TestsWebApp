@@ -9,6 +9,7 @@ import Button from "../../Shared/Button";
 import PageSpinner from "../../Shared/Spinners/PageSpinner";
 import Question from "./Question/Question";
 import Result from "./Result";
+import Grade from "./Grade";
 
 function AnswerTest({ match, userId }) {
   const [test, setTest] = useState({
@@ -165,11 +166,16 @@ function AnswerTest({ match, userId }) {
         ) : null}
       </form>
       {test.data ? (
-        <Result
-          points={test.data.points}
-          final={test.data.final}
-          isAnswered={test.isAnswered}
-        />
+        <>
+          <Result
+            points={test.data.points}
+            final={test.data.final}
+            isAnswered={test.isAnswered}
+          />
+          {test.isAnswered ? (
+            <Grade final={test.data.final} points={test.data.points} />
+          ) : null}
+        </>
       ) : null}
     </Page>
   );

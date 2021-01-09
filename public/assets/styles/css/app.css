@@ -522,7 +522,7 @@ main.tests .cards a:hover {
 }
 main.tests .admin-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 250px));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
 }
 main.tests .admin-cards > li {
@@ -662,20 +662,20 @@ main.answer-test .answer input:checked ~ p {
 main.answer-test .answer:not(:last-child) {
   margin-bottom: 12px;
 }
-main.answer-test .modal.result {
-  background-color: rgba(44, 26, 82, 0.5);
-}
-main.answer-test .modal.result.pass .modal-content {
+main.answer-test .pass .modal-content {
   background-color: var(--teal);
 }
-main.answer-test .modal.result.fail .modal-content {
+main.answer-test .fail .modal-content {
   background-color: var(--violet-800);
 }
-main.answer-test .modal.result.fail .modal-content * {
+main.answer-test .fail .modal-content * {
   color: white;
 }
-main.answer-test .modal.result.fail .modal-content .grade {
+main.answer-test .fail .grade {
   color: var(--danger-900);
+}
+main.answer-test .modal.result {
+  background-color: rgba(44, 26, 82, 0.5);
 }
 main.answer-test .modal.result .modal-header {
   border-bottom-color: var(--blue-900);
@@ -709,6 +709,23 @@ main.answer-test .question.wrong .answer.selected input[type=radio] + i {
 }
 main.answer-test .error-message {
   margin-top: 8px;
+}
+main.answer-test .grade-details {
+  background-color: var(--blue-800);
+  text-align: center;
+  color: white;
+  font-size: 20;
+  padding: 32px;
+  border: 10px solid transparent;
+}
+main.answer-test .grade-details.pass {
+  border-color: var(--teal);
+}
+main.answer-test .grade-details.pass .grade {
+  color: var(--teal);
+}
+main.answer-test .grade-details.fail {
+  border-color: var(--danger-900);
 }
 
 .http-errors {
