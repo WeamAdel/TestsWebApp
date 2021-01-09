@@ -18,7 +18,6 @@ function SignUp({ doSignUp, signUp, history, isLogged }) {
   });
 
   const onSubmit = (data) => {
-    console.log(data);
     doSignUp({
       password: data.password,
       email: data.email,

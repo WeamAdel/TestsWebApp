@@ -72,18 +72,19 @@ export const doAPISignUp = ({ email, password, username }) => (dispatch) => {
       return doAPISaveUserData({ id: userId, username, email });
     })
     .catch(({ response }) => {
-      dispatch(updateSignInLoadingStatus(false));
-      const error = response.data.error;
       dispatch(updateSignUpLoadingStatus(false));
 
-      let message = "Too many attempts, please try again later";
-      if (error.code == 400) {
-        if ((error.message = "EMAIL_EXISTS"))
+      if (response && response.data) {
+        const error = response.data.error;
+        let message = "Too many attempts, please try again later";
+
+        if (error.code == 400 && error.message == "EMAIL_EXISTS") {
           message =
             "This email already exists! sign in or enter a different email";
-      }
+        }
 
-      dispatch(onAuthFail({ message, page: "signUp" }));
+        dispatch(onAuthFail({ message, page: "signUp" }));
+      }
     });
 };
 
@@ -125,16 +126,18 @@ export const doAPISignIn = ({ email, password }) => (dispatch) => {
     })
     .catch(({ response }) => {
       dispatch(updateSignInLoadingStatus(false));
-      const error = response.data.error;
 
-      if (error.code == 400) {
-        let message = "Too many attempts, please try again later";
-        if (error.message === "EMAIL_NOT_FOUND")
-          message = "This email does not exist";
-        else if (error.message === "INVALID_PASSWORD")
-          message = "Invalid password";
+      if (response && response.data) {
+        const error = response.data.error;
+        if (error.code == 400) {
+          let message = "Too many attempts, please try again later";
+          if (error.message === "EMAIL_NOT_FOUND")
+            message = "This email does not exist";
+          else if (error.message === "INVALID_PASSWORD")
+            message = "Invalid password";
 
-        dispatch(onAuthFail({ message, page: "signIn" }));
+          dispatch(onAuthFail({ message, page: "signIn" }));
+        }
       }
     });
 };

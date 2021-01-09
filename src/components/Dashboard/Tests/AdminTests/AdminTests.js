@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import TestCard from "./TestCard";
-import NoData from "../NoData";
+import NoData from "./NoData";
 import RecentAnswers from "./RecentAsnswers";
 
 export default function AdminTests({ tests }) {
@@ -37,5 +37,5 @@ export default function AdminTests({ tests }) {
 }
 
 AdminTests.propTypes = {
-  tests: PropTypes.object.isRequired,
+  tests: PropTypes.object,
 };

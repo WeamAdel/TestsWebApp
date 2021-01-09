@@ -598,7 +598,6 @@ main.tests .no-data {
   padding: 32px;
 }
 main.tests .no-data img {
-  min-width: 120px;
   margin-bottom: 4px;
 }
 main.tests .no-data a {

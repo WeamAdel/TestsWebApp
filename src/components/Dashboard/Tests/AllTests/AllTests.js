@@ -1,6 +1,6 @@
 import PropTypes, { object } from "prop-types";
 import TestCard from "./TestCard";
-import NoData from "../NoData";
+import NoData from "./NoData";
 
 export default function AllTests({ tests }) {
   const testsJSX = tests
@@ -36,5 +36,5 @@ export default function AllTests({ tests }) {
 }
 
 AllTests.propTypes = {
-  tests: PropTypes.object.isRequired,
+  tests: PropTypes.object,
 };
