@@ -43,7 +43,6 @@ function Navbar({ doLogout, user }) {
             <li className="nav-item dropdown">
               <a
                 className="dropdown-toggle"
-                href="#"
                 id="navbarDropdown"
                 role="button"
                 data-toggle="dropdown"
@@ -61,7 +60,7 @@ function Navbar({ doLogout, user }) {
                   </div>
                 </Link>
                 <hr />
-                <a className="dropdown-item" href="#" onClick={doLogout}>
+                <a className="dropdown-item" onClick={doLogout}>
                   <i className="fa fa-sign-out mr-2" /> Logout
                 </a>
               </div>

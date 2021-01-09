@@ -71,17 +71,16 @@ export const doAPISignUp = ({ email, password, username }) => (dispatch) => {
       dispatch(updateSignUpLoadingStatus(false));
       return doAPISaveUserData({ id: userId, username, email });
     })
-    .catch((error) => {
-      console.log(error);
+    .catch(({ response }) => {
+      dispatch(updateSignInLoadingStatus(false));
+      const error = response.data.error;
       dispatch(updateSignUpLoadingStatus(false));
 
-      let message = "Something went wrong";
-      if ((error.status = 400)) {
+      let message = "Too many attempts, please try again later";
+      if (error.code == 400) {
         if ((error.message = "EMAIL_EXISTS"))
           message =
             "This email already exists! sign in or enter a different email";
-        else if (error.message == "TOO_MANY_ATTEMPTS_TRY_LATER")
-          message = "Too many attempts, please try again later";
       }
 
       dispatch(onAuthFail({ message, page: "signUp" }));
@@ -105,7 +104,7 @@ export const doAPISignIn = ({ email, password }) => (dispatch) => {
     .post(apiEndPoint, { email, password, returnSecureToken: true })
     .then((res) => {
       dispatch(updateSignInLoadingStatus(false));
-      if (res.status == 200) return res.data;
+      if (res.status === 200) return res.data;
     })
     .then(async (data) => {
       const { username, isAdmin } = await firebase
@@ -124,15 +123,15 @@ export const doAPISignIn = ({ email, password }) => (dispatch) => {
         })
       );
     })
-    .catch((error) => {
-      console.log(error);
+    .catch(({ response }) => {
       dispatch(updateSignInLoadingStatus(false));
+      const error = response.data.error;
 
-      if ((error.status = 400)) {
-        let message = "Something went wrong!";
-        if (error.message == "EMAIL_NOT_FOUND")
+      if (error.code == 400) {
+        let message = "Too many attempts, please try again later";
+        if (error.message === "EMAIL_NOT_FOUND")
           message = "This email does not exist";
-        else if (error.message == "INVALID_PASSWORD")
+        else if (error.message === "INVALID_PASSWORD")
           message = "Invalid password";
 
         dispatch(onAuthFail({ message, page: "signIn" }));

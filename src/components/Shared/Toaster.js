@@ -9,7 +9,7 @@ export default function Toaster({ type, message, show, isFixed }) {
       role="alert"
     >
       <div className="icon">
-        <i className={`fa fa-${type == "success" ? "check" : "bug"}`} />{" "}
+        <i className={`fa fa-${type === "success" ? "check" : "bug"}`} />{" "}
       </div>
       <span>{message}</span>
     </div>

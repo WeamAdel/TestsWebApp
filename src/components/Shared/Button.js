@@ -7,7 +7,7 @@ function Button({ title, classes, link, clicked, isLoading }) {
     <button
       className={"btn " + classes}
       onClick={clicked ? clicked : null}
-      disabled={isLoading == true}
+      disabled={isLoading === true}
     >
       {link ? (
         <Link href={link}>
@@ -16,7 +16,7 @@ function Button({ title, classes, link, clicked, isLoading }) {
       ) : (
         <span>
           {title}
-          {isLoading == true ? <Spinner /> : null}
+          {isLoading === true ? <Spinner /> : null}
         </span>
       )}
     </button>

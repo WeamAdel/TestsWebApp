@@ -10,5 +10,4 @@ export const signUpSchema = yup.object().shape({
   username: yup.string().required().max(75),
   email: emailSchema,
   password: passwordSchema,
-  confirmPassword: passwordSchema,
 });

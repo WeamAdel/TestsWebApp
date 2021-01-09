@@ -27,7 +27,7 @@ function Tests({ app, isLogged, user }) {
       .once("value")
       .then((snapshot) => {
         const tests = snapshot.val();
-        console.log(tests);
+
         setTests({
           isLoading: false,
           data: tests,

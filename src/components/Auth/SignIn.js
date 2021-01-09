@@ -22,10 +22,10 @@ function SignIn({ doSignIn, app, signIn, history, isLogged }) {
 
   //Redirect user if signed in
   useEffect(() => {
-    if (isLogged == true) history.push("/dashboard");
+    if (isLogged === true) history.push("/dashboard");
   }, [isLogged]);
 
-  return isLogged == false ? (
+  return isLogged === false ? (
     <main className="auth sign-in">
       <div className="container">
         <form onSubmit={handleSubmit(onSubmit)}>

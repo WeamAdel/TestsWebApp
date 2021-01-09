@@ -38,14 +38,14 @@ function AppWrapper({ children, setAppData, getAPIUser, history, isLogged }) {
       .catch((error) => {
         console.log(error);
       });
-    console.log(userData);
+
     return userData;
   }
 
   //Redirect logged users to dashboard
   useEffect(() => {
     const notInDahsboard = history.location.pathname.indexOf("dashboard") < 0;
-    if (isLogged == true && notInDahsboard) history.push("/dashboard");
+    if (isLogged === true && notInDahsboard) history.push("/dashboard");
   }, [isLogged]);
   return appDataStatus && isLogged != null ? children : <PageSpinner />;
 }

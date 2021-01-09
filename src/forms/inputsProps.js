@@ -37,11 +37,4 @@ export const signUpInputs = [
     label: "Password",
     isRequired: true,
   },
-  {
-    id: "confirmPassword",
-    type: "password",
-    placeholder: "Enter your password again",
-    label: "Confirm Password",
-    isRequired: true,
-  },
 ];
