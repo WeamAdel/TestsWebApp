@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { connect } from "react-redux";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { answerTestSchema } from "../../../forms/validation/schemas/test";
 import firebase from "../../../configs/firebase";
 import Page from "../../Layout/Page";
 import Button from "../../Shared/Button";
@@ -22,9 +23,11 @@ function AnswerTest({ match, userId }) {
     defaultValues: {
       answers: [],
     },
-    // resolver: yupResolver(testSchema),
+    resolver: yupResolver(answerTestSchema),
     mode: "onChange",
   });
+
+  console.log(errors);
 
   const { fields } = useFieldArray({
     control,
@@ -136,6 +139,11 @@ function AnswerTest({ match, userId }) {
             {...question}
             register={register}
             isAnswered={test.isAnswered}
+            errorMessage={
+              errors?.answers && errors.answers[index]
+                ? errors.answers[index].value.message
+                : null
+            }
           />
         );
       })

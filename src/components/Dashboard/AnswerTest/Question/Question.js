@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import Answer from "./Answer";
+import ErrorMessage from "../../../Shared/Forms/ErrorMessage";
 
 export default function Question({
   question,
@@ -10,6 +11,7 @@ export default function Question({
   rightAnswerIndex,
   register,
   isAnswered,
+  errorMessage,
 }) {
   const [result, setResult] = useState("");
 
@@ -41,6 +43,8 @@ export default function Question({
     <li className={"question" + result}>
       <h2>{question}</h2>
       <ul className="list-unstyled p-0">{answersJSX}</ul>
+      {errorMessage ? <ErrorMessage message={errorMessage} /> : null}
+
       <hr />
     </li>
   );

@@ -708,5 +708,8 @@ main.answer-test .question.wrong .answer.selected p {
 main.answer-test .question.wrong .answer.selected input[type=radio] + i {
   color: var(--danger-900);
 }
+main.answer-test .error-message {
+  margin-top: 8px;
+}
 
 /*# sourceMappingURL=app.css.map */
