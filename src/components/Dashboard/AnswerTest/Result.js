@@ -66,7 +66,7 @@ export default function Result({ points, final, isAnswered }) {
 }
 
 Result.propTypes = {
-  points: PropTypes.number.isRequired,
-  final: PropTypes.number.isRequired,
+  points: PropTypes.number,
+  final: PropTypes.number,
   isAnswered: PropTypes.bool,
 };

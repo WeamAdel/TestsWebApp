@@ -79,9 +79,9 @@ function AnswerTest({ match, userId }) {
 
     for (let i = 0; i < test.data.questions.length; i++) {
       const question = testQuestions[i];
-      const tempQuestion = { ...question, userAnswerIndex: answers[i].value };
+      const tempQuestion = { ...question, userAnswerIndex: +answers[i].value };
 
-      if (answers[i].value == question.rightAnswerIndex) points += 1;
+      if (+answers[i].value == question.rightAnswerIndex) points += 1;
       questions.push(tempQuestion);
     }
 
@@ -110,7 +110,10 @@ function AnswerTest({ match, userId }) {
         console.log(res);
         setTest({
           ...test,
-          data: answerReport,
+          data: {
+            name: test.data.name,
+            ...answerReport,
+          },
           isSubmitting: false,
           isAnswered: true,
         });
@@ -130,10 +133,9 @@ function AnswerTest({ match, userId }) {
           <Question
             key={index}
             index={index}
-            question={question.question}
-            answers={question.answers}
-            rightAnswerIndex={question.rightAnswerIndex}
+            {...question}
             register={register}
+            isAnswered={test.isAnswered}
           />
         );
       })

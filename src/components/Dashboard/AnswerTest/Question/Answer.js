@@ -8,10 +8,14 @@ export default function Answer({
   rightAnswerIndex,
   register,
   name,
+  isAnswered,
+  userAnswerIndex,
 }) {
   const id = "a" + index;
+  const right = isAnswered && rightAnswerIndex == index ? " right-answer" : "";
+  const selected = isAnswered && userAnswerIndex == index ? " selected" : "";
   return (
-    <li className="answer custom-radio">
+    <li className={"answer custom-radio" + right + selected}>
       <Radio
         classes="d-none"
         id={id}
@@ -19,6 +23,7 @@ export default function Answer({
         label={`Question ${questionIndex} answer ${index}`}
         value={index}
         name={name}
+        isDisabled={isAnswered}
       />
       <p>{answer}</p>
     </li>

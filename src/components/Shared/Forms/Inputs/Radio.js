@@ -9,6 +9,7 @@ export default function Radio({
   value,
   defaultValue,
   defaultChecked,
+  isDisabled,
 }) {
   return (
     <>
@@ -22,6 +23,7 @@ export default function Radio({
         value={value}
         defaultValue={defaultValue}
         defaultChecked={defaultChecked}
+        disabled={isDisabled}
       />
       <i className="fa fa-check-circle" />
     </>
@@ -36,4 +38,5 @@ Radio.propTypes = {
   classes: PropTypes.string,
   value: PropTypes.number,
   defaultChecked: PropTypes.bool,
+  isDisabled: PropTypes.bool,
 };

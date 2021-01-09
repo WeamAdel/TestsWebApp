@@ -50,7 +50,9 @@ form {
       height: 32px;
       opacity: 0.01;
       margin-left: 16px;
-      cursor: pointer;
+      &:not(:disabled) {
+        cursor: pointer;
+      }
 
       &:checked + i {
         color: var(--purple-900);

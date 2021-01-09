@@ -73,4 +73,38 @@ main.answer-test {
       font-size: 20px;
     }
   }
+
+  .question {
+    &.right {
+      .answer.right-answer {
+        p {
+          background-color: var(--teal);
+          color: var(--blue-900);
+        }
+        input[type="radio"] + i {
+          color: var(--teal);
+        }
+      }
+    }
+
+    &.wrong {
+      .answer.right-answer {
+        p {
+          border-color: var(--teal);
+        }
+        input[type="radio"] + i {
+          color: var(--teal);
+        }
+      }
+
+      .answer.selected {
+        p {
+          border-color: var(--danger-900);
+        }
+        input[type="radio"] + i {
+          color: var(--danger-900);
+        }
+      }
+    }
+  }
 }

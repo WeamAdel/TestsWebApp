@@ -115,6 +115,8 @@ form .custom-radio input[type=radio] {
   height: 32px;
   opacity: 0.01;
   margin-left: 16px;
+}
+form .custom-radio input[type=radio]:not(:disabled) {
   cursor: pointer;
 }
 form .custom-radio input[type=radio]:checked + i {
@@ -686,6 +688,25 @@ main.answer-test .modal.result img {
 main.answer-test .modal.result p {
   font-family: var(--robotoCondensed);
   font-size: 20px;
+}
+main.answer-test .question.right .answer.right-answer p {
+  background-color: var(--teal);
+  color: var(--blue-900);
+}
+main.answer-test .question.right .answer.right-answer input[type=radio] + i {
+  color: var(--teal);
+}
+main.answer-test .question.wrong .answer.right-answer p {
+  border-color: var(--teal);
+}
+main.answer-test .question.wrong .answer.right-answer input[type=radio] + i {
+  color: var(--teal);
+}
+main.answer-test .question.wrong .answer.selected p {
+  border-color: var(--danger-900);
+}
+main.answer-test .question.wrong .answer.selected input[type=radio] + i {
+  color: var(--danger-900);
 }
 
 /*# sourceMappingURL=app.css.map */

@@ -1,13 +1,26 @@
 import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
 import Answer from "./Answer";
 
 export default function Question({
   question,
   answers,
+  userAnswerIndex,
   index,
   rightAnswerIndex,
   register,
+  isAnswered,
 }) {
+  const [result, setResult] = useState("");
+
+  useEffect(() => {
+    if (isAnswered) {
+      const answerResult =
+        userAnswerIndex == rightAnswerIndex ? " right" : " wrong";
+      setResult(answerResult);
+    }
+  }, [isAnswered]);
+
   const answersJSX = answers.map((answer, i) => {
     return (
       <Answer
@@ -17,13 +30,15 @@ export default function Question({
         index={i}
         questionIndex={index}
         rightAnswerIndex={rightAnswerIndex}
+        userAnswerIndex={userAnswerIndex}
         name={`answers[${index}].value`}
+        isAnswered={isAnswered}
       />
     );
   });
 
   return (
-    <li className="question">
+    <li className={"question" + result}>
       <h2>{question}</h2>
       <ul className="list-unstyled p-0">{answersJSX}</ul>
       <hr />
