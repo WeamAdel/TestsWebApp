@@ -20,12 +20,6 @@ export default function Answer({
         value={index}
         name={name}
       />
-      {/* <label
-        className="d-none"
-        htmlFor={id}
-      >{`Question ${questionIndex} answer ${index}`}</label>
-      <input ref={register()} type="radio" value={index} name={name} />
-      <i className="fa fa-check-circle" /> */}
       <p>{answer}</p>
     </li>
   );

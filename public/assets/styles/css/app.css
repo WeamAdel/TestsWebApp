@@ -651,14 +651,41 @@ main.answer-test .answer p {
   padding: 8px 16px;
   margin-bottom: 0;
   border: 2px solid transparent;
+  transition: all 0.15s ease-in-out;
 }
-main.answer-test .answer input:checked + p {
+main.answer-test .answer input:checked ~ p {
   border-color: var(--purple-900);
   transform: scale(1.02);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 main.answer-test .answer:not(:last-child) {
   margin-bottom: 12px;
+}
+main.answer-test .modal.result {
+  background-color: rgba(44, 26, 82, 0.5);
+}
+main.answer-test .modal.result.pass .modal-content {
+  background-color: var(--teal);
+}
+main.answer-test .modal.result.fail .modal-content {
+  background-color: var(--violet-800);
+}
+main.answer-test .modal.result.fail .modal-content * {
+  color: white;
+}
+main.answer-test .modal.result.fail .modal-content .grade {
+  color: var(--danger-900);
+}
+main.answer-test .modal.result .modal-header {
+  border-bottom-color: var(--blue-900);
+}
+main.answer-test .modal.result img {
+  width: 52px;
+  margin-bottom: 12px;
+}
+main.answer-test .modal.result p {
+  font-family: var(--robotoCondensed);
+  font-size: 20px;
 }
 
 /*# sourceMappingURL=app.css.map */

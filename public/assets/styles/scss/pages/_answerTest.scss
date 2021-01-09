@@ -1,8 +1,10 @@
 main.answer-test {
   padding: 60px 0;
+
   h1 {
     margin-bottom: 44px;
   }
+
   h2 {
     font-size: 18px;
     font-family: "Times New Roman", Times, serif;
@@ -26,10 +28,11 @@ main.answer-test {
       padding: 8px 16px;
       margin-bottom: 0;
       border: 2px solid transparent;
+      transition: all 0.15s ease-in-out;
     }
 
     input:checked {
-      + p {
+      ~ p {
         border-color: var(--purple-900);
         transform: scale(1.02);
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
@@ -38,6 +41,36 @@ main.answer-test {
 
     &:not(:last-child) {
       margin-bottom: 12px;
+    }
+  }
+
+  .modal.result {
+    background-color: rgba(#2c1a52, 0.5);
+    &.pass .modal-content {
+      background-color: var(--teal);
+    }
+
+    &.fail .modal-content {
+      background-color: var(--violet-800);
+      * {
+        color: white;
+      }
+      .grade {
+        color: var(--danger-900);
+      }
+    }
+
+    .modal-header {
+      border-bottom-color: var(--blue-900);
+    }
+
+    img {
+      width: 52px;
+      margin-bottom: 12px;
+    }
+    p {
+      font-family: var(--robotoCondensed);
+      font-size: 20px;
     }
   }
 }

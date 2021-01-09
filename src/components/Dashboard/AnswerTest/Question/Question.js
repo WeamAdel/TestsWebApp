@@ -17,7 +17,7 @@ export default function Question({
         index={i}
         questionIndex={index}
         rightAnswerIndex={rightAnswerIndex}
-        name={`answers[${index}].name`}
+        name={`answers[${index}].value`}
       />
     );
   });
